@@ -116,7 +116,7 @@ export default function LogoIcon() {
           </linearGradient>
         </defs>
       </svg>
-      <h1 className="pl-[1em] text-xl">MotoMate</h1>
+      <h1 className="pl-[1em] font-decor tracking-wider text-2xl">MotoMate</h1>
     </div>
   );
 }
