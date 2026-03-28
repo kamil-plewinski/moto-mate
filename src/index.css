@@ -23,9 +23,9 @@
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   body {
-    padding: 2em 4em;
+    padding: 2em 2em;
   }
 }
 
