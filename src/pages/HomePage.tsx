@@ -1,7 +1,7 @@
-import MyVehicle from "../components/MyVehicle";
-import TotalCosts from "../components/TotalCosts";
-import ThisMonthCosts from "../components/ThisMonthCosts";
-import VehicleOdometer from "../components/VehicleOdometer";
+import MyVehicle from "../components/page-components/home/MyVehicle";
+import TotalCosts from "../components/page-components/home/TotalCosts";
+import ThisMonthCosts from "../components/page-components/home/ThisMonthCosts";
+import VehicleOdometer from "../components/page-components/home/VehicleOdometer";
 import MobileBottomNav from "../components/MobileBottomNav";
 import SideBar from "../components/SideBar";
 
