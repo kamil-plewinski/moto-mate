@@ -6,7 +6,7 @@ type NavItemProps = {
   icon: React.ReactNode;
 };
 
-export default function NavItem({ title, gridArea, icon }: NavItemProps) {
+export default function NavItemMobile({ title, gridArea, icon }: NavItemProps) {
   return (
     <div className={gridArea}>
       <Link to="" className="flex flex-col items-center justify-center w-25">

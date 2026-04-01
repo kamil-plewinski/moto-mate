@@ -2,7 +2,7 @@ import AddVehicleIcon from "./icons/AddVehicleIcon";
 import ChevronIcon from "./icons/ChevronIcon";
 import HomeIcon from "./icons/HomeIcon";
 import MyVehiclesIcon from "./icons/MyVehiclesIcon";
-import NavItem from "./NavItem";
+import NavItemMobile from "./NavItemMobile";
 
 type NavItemsConfig = {
   title: string;
@@ -31,7 +31,7 @@ export default function MobileBottomNav() {
 
   const renderedItems = navItems.map((item) => {
     return (
-      <NavItem
+      <NavItemMobile
         key={item.title}
         title={item.title}
         icon={item.icon}
