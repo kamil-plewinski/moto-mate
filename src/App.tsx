@@ -1,6 +1,8 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./pages/Root";
 import HomePage from "./pages/HomePage";
+import AddVehiclePage from "./pages/AddVehiclePage";
+import MyVehiclesPage from "./pages/MyVehiclesPage";
 
 const router = createBrowserRouter([
   {
@@ -11,10 +13,14 @@ const router = createBrowserRouter([
         index: true,
         element: <HomePage />,
       },
-      // {
-      //   path: "/my-vehicles",
-      //   element: <MyVehicles />,
-      // },
+      {
+        path: "add-vehicle",
+        element: <AddVehiclePage />,
+      },
+      {
+        path: "my-vehicles",
+        element: <MyVehiclesPage />,
+      },
     ],
   },
 ]);

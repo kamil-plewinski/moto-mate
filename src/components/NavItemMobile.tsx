@@ -1,18 +1,28 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 type NavItemProps = {
   title: string;
   gridArea: string;
   icon: React.ReactNode;
+  path: string;
 };
 
-export default function NavItemMobile({ title, gridArea, icon }: NavItemProps) {
+export default function NavItemMobile({
+  title,
+  gridArea,
+  icon,
+  path,
+}: NavItemProps) {
   return (
     <div className={gridArea}>
-      <Link to="" className="flex flex-col items-center justify-center w-25">
+      <NavLink
+        to={path}
+        end={path === "/"}
+        className="flex flex-col items-center justify-center w-25"
+      >
         <div className="mb-2">{icon}</div>
         <p>{title}</p>
-      </Link>
+      </NavLink>
     </div>
   );
 }
