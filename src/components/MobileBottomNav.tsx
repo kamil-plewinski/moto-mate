@@ -36,6 +36,14 @@ export default function MobileBottomNav() {
     },
   ];
 
+  const toggleMobileMenu = () => {
+    setIsMobileNavOpen((prev) => !prev);
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileNavOpen(false);
+  };
+
   const renderedItems = navItems.map((item) => {
     return (
       <NavItemMobile
@@ -44,13 +52,10 @@ export default function MobileBottomNav() {
         icon={item.icon}
         gridArea={item.gridArea}
         path={item.path}
+        onClick={closeMobileMenu}
       />
     );
   });
-
-  const toggleMobileMenu = () => {
-    setIsMobileNavOpen((prev) => !prev);
-  };
 
   return (
     <nav

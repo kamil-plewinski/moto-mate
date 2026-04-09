@@ -1,6 +1,5 @@
 import MyVehicle from "../components/page-components/home/MyVehicle";
 import InfoCard from "../components/page-components/home/InfoCard";
-import MobileBottomNav from "../components/MobileBottomNav";
 import SideBar from "../components/SideBar";
 
 type CardConfig = {
@@ -36,7 +35,6 @@ export default function HomePage() {
         <MyVehicle />
         {renderedCards}
       </div>
-      <MobileBottomNav />
     </>
   );
 }

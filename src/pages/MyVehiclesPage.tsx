@@ -1,4 +1,3 @@
-import MobileBottomNav from "../components/MobileBottomNav";
 import SideBar from "../components/SideBar";
 
 export default function MyVehiclesPage() {
@@ -9,7 +8,6 @@ export default function MyVehiclesPage() {
         <SideBar />
         <h1>Moje pojazdy</h1>
       </div>
-      <MobileBottomNav />
     </>
   );
 }
