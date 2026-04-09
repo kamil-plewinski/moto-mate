@@ -1,5 +1,4 @@
 import SideBar from "../components/SideBar";
-import MobileBottomNav from "../components/MobileBottomNav";
 
 export default function AddVehiclePage() {
   //Grid Layout needs refactor on this Page
@@ -9,7 +8,6 @@ export default function AddVehiclePage() {
         <SideBar />
         <h1>Dodaj Pojazd</h1>
       </div>
-        <MobileBottomNav />
     </>
   );
 }
