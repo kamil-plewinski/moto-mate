@@ -1,0 +1,17 @@
+GET http://localhost:3001/vehicles HTTP/1.1
+
+### 
+
+POST http://localhost:3001/vehicles
+Content-Type: application/json
+
+{
+    "type": "motorcycle",
+    "brand": "Honda",
+    "model": "Cbr",
+    "year": 1999
+}
+
+### 
+
+DELETE http://localhost:3001/vehicles/ID
