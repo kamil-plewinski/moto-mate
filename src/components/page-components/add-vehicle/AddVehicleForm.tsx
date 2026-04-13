@@ -27,9 +27,32 @@ export default function AddVehicleForm({
   const inputClasses =
     "p-2 max-w-120 border-b border-gray-300/50 focus:outline-none focus:border-red-400";
 
-  const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
+  const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    alert("pojazd dodany!");
+
+    const formData = new FormData(e.currentTarget);
+
+    const brand = formData.get("brand");
+    const model = formData.get("model");
+    const year = formData.get("year");
+    const odometer = formData.get("odometer");
+
+    const newVehicle = {
+      type: vehicleCategory,
+      brand: brand,
+      model: model,
+      year: Number(year),
+      odometer: Number(odometer),
+    };
+
+    await fetch("http://localhost:3001/vehicles", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newVehicle),
+    }).then((response) => response.json());
+
     closeForm();
   };
 

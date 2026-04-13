@@ -1,3 +1,29 @@
 {
-  "vehicles": []
+  "vehicles": [
+    {
+      "type": "car",
+      "brand": "opel",
+      "model": "corsa",
+      "year": 1999,
+      "odometer": 500500,
+      "id": "K1eNZbIml2g"
+    },
+    {
+      "type": "motorcycle",
+      "brand": "Honda",
+      "model": "Cbr1000rr",
+      "year": 2005,
+      "odometer": 32000,
+      "id": "mpL_Hq4gf0I"
+    },
+    {
+      "type": "car",
+      "brand": "fiat",
+      "model": "500",
+      "year": 1999,
+      "odometer": 600000,
+      "id": "2LGY35ioG-I"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }
