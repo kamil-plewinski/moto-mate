@@ -122,7 +122,7 @@ export default function AddVehicleForm({
         <input
           type="submit"
           value="Dodaj"
-          className="py-2 mt-10 mx-auto w-40 text-lg bg-blue-300"
+          className="py-2 mt-10 mx-auto w-40 text-lg bg-blue-300 cursor-pointer"
         />
       </form>
     </div>
