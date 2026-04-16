@@ -5,6 +5,5 @@ export type PopupContextType = {
   message: string;
   type: PopupType;
   showPopup: (message: string, type: PopupType) => void;
-  hidePopup: () => void;
+  closePopup: () => void;
 };
-
