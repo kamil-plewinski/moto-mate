@@ -1,7 +1,6 @@
-import { createContext, useState } from "react";
-import type { PopupType, PopupContextType } from "./types";
-
-export const PopupContext = createContext<PopupContextType | null>(null);
+import { useState } from "react";
+import { PopupContext } from "./PopupContext";
+import type { PopupType } from "./types";
 
 export default function PopupProvider({
   children,
