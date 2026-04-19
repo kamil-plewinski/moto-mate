@@ -1,4 +1,5 @@
 import { X } from "lucide-react";
+import { usePopup } from "../../popup/usePopup";
 
 type AddVehicleFormProps = {
   vehicleCategory: "car" | "motorcycle";
@@ -24,6 +25,8 @@ export default function AddVehicleForm({
   closeForm,
   vehicleCategory,
 }: AddVehicleFormProps) {
+  const { showPopup } = usePopup();
+
   const inputClasses =
     "p-2 max-w-120 border-b border-gray-300/50 focus:outline-none focus:border-red-400";
 
@@ -53,6 +56,7 @@ export default function AddVehicleForm({
       body: JSON.stringify(newVehicle),
     }).then((response) => response.json());
 
+    showPopup("Pojazd dodany!", "success");
     closeForm();
   };
 
@@ -119,11 +123,12 @@ export default function AddVehicleForm({
           className={inputClasses}
           required
         />
-        <input
+        <button
           type="submit"
-          value="Dodaj"
           className="py-2 mt-10 mx-auto w-40 text-lg bg-blue-300 cursor-pointer"
-        />
+        >
+          Dodaj
+        </button>
       </form>
     </div>
   );
