@@ -56,7 +56,7 @@ export default function AddVehicleForm({
       body: JSON.stringify(newVehicle),
     }).then((response) => response.json());
 
-    showPopup("Pojazd dodany!", "success");
+    showPopup("Pojazd został dodany!", "success");
     closeForm();
   };
 
