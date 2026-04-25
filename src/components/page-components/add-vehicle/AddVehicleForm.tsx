@@ -34,7 +34,6 @@ export default function AddVehicleForm({
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
-
     const brand = formData.get("brand");
     const model = formData.get("model");
     const year = formData.get("year");
@@ -48,16 +47,23 @@ export default function AddVehicleForm({
       odometer: Number(odometer),
     };
 
-    await fetch("http://localhost:3001/vehicles", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newVehicle),
-    }).then((response) => response.json());
+    try {
+      const res = await fetch("http://localhost:3001/vehicles", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newVehicle),
+      });
 
-    showPopup("Pojazd został dodany!", "success");
-    closeForm();
+      if (!res.ok) {
+        throw new Error("Nie udało się dodać pojazdu");
+      }
+
+      showPopup("Pojazd został dodany!", "success");
+      closeForm();
+    } catch (err) {
+      console.log("Wystąpił błąd", err);
+      showPopup("Ups, coś poszło nie tak.", "error");
+    }
   };
 
   const config = vehicleFormConfig[vehicleCategory];
