@@ -8,12 +8,14 @@ type AddVehicleFormProps = {
 
 const vehicleFormConfig = {
   car: {
+    defaultPhoto: "/img/oskaline-car-63930_640.jpg",
     brandPlaceholder: "Podaj markę samochodu",
     modelPlaceholder: "Podaj model samochodu",
     yearPlaceholder: "Podaj rok produkcji samochodu",
     odometerPlaceholder: "Podaj przebieg samochodu w km.",
   },
   motorcycle: {
+    defaultPhoto: "/img/ds_30-mode-4783281_640.jpg",
     brandPlaceholder: "Podaj markę motocykla",
     modelPlaceholder: "Podaj model motocykla",
     yearPlaceholder: "Podaj rok produkcji motocykla",
@@ -30,6 +32,8 @@ export default function AddVehicleForm({
   const inputClasses =
     "p-2 max-w-120 border-b border-gray-300/50 focus:outline-none focus:border-red-400";
 
+  const config = vehicleFormConfig[vehicleCategory];
+
   const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -41,8 +45,9 @@ export default function AddVehicleForm({
 
     const newVehicle = {
       type: vehicleCategory,
-      brand: brand,
-      model: model,
+      photo: config.defaultPhoto,
+      brand: brand as string,
+      model: model as string,
       year: Number(year),
       odometer: Number(odometer),
     };
@@ -66,8 +71,6 @@ export default function AddVehicleForm({
     }
   };
 
-  const config = vehicleFormConfig[vehicleCategory];
-
   return (
     <div
       onClick={closeForm}
@@ -81,10 +84,16 @@ export default function AddVehicleForm({
         <button
           type="button"
           onClick={closeForm}
-          className="absolute top-0 right-0 m-8 cursor-pointer"
+          className="absolute top-0 right-0 m-5 cursor-pointer"
         >
           <X size={36} />
         </button>
+        <img
+          id="vehicle-photo"
+          src={config.defaultPhoto}
+          alt="Zdjęcie wybranego pojazdu"
+          className="mx-auto w-full max-w-100 md:max-w-110 lg:mr-14 lg:absolute lg:right-0 lg:top-[50%] lg:translate-y-[-50%] lg:max-w-110 xl:max-w-130"
+        />
         <label htmlFor="brand" className="mt-8">
           Marka:
         </label>
