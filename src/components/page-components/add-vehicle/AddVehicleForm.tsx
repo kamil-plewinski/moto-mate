@@ -30,7 +30,7 @@ export default function AddVehicleForm({
   const { showPopup } = usePopup();
 
   const inputClasses =
-    "p-2 max-w-120 border-b border-gray-300/50 focus:outline-none focus:border-red-400";
+    "p-2 w-full border-b border-gray-300/50 focus:outline-none focus:border-[#993434] lg:max-w-110";
 
   const config = vehicleFormConfig[vehicleCategory];
 
@@ -79,22 +79,22 @@ export default function AddVehicleForm({
       <form
         onClick={(e) => e.stopPropagation()}
         onSubmit={submitForm}
-        className="relative w-full top-0 left-0 mx-2 flex flex-col gap-3 p-10 bg-gray-500 lg:max-w-350"
+        className="relative w-full top-0 left-0 mx-2 flex flex-col gap-2 p-10 custom-background rounded-xl text-sm md:text-md lg:gap-3 lg:max-w-350 md:px-40 lg:px-10 lg:py-14 xl:pt-10 xl:px-20"
       >
         <button
           type="button"
           onClick={closeForm}
-          className="absolute top-0 right-0 m-5 cursor-pointer"
+          className="absolute top-0 right-0 m-3 cursor-pointer md:m-6 "
         >
-          <X size={36} />
+          <X size={32} />
         </button>
         <img
           id="vehicle-photo"
           src={config.defaultPhoto}
           alt="Zdjęcie wybranego pojazdu"
-          className="mx-auto w-full max-w-100 md:max-w-110 lg:mr-14 lg:absolute lg:right-0 lg:top-[50%] lg:translate-y-[-50%] lg:max-w-110 xl:max-w-130"
+          className="mx-auto w-full max-w-100 mt-2 md:max-w-120 lg:mr-14 lg:absolute lg:right-0 lg:top-[50%] lg:translate-y-[-50%] xl:max-w-150 xl:mr-20 shadow-md rounded-md lg:mt-0"
         />
-        <label htmlFor="brand" className="mt-8">
+        <label htmlFor="brand" className="mt-2 md:max-w-110 lg:mt-10 xl:mt-20">
           Marka:
         </label>
         <input
@@ -105,7 +105,7 @@ export default function AddVehicleForm({
           className={inputClasses}
           required
         />
-        <label htmlFor="model" className="mt-2">
+        <label htmlFor="model" className="mt-2 md:max-w-110">
           Model:
         </label>
         <input
@@ -116,7 +116,7 @@ export default function AddVehicleForm({
           className={inputClasses}
           required
         />
-        <label htmlFor="year" className="mt-2">
+        <label htmlFor="year" className="mt-2 md:max-w-110">
           Rok produkcji:
         </label>
         <input
@@ -127,7 +127,7 @@ export default function AddVehicleForm({
           className={inputClasses}
           required
         />
-        <label htmlFor="odometer" className="mt-2">
+        <label htmlFor="odometer" className="mt-2 md:max-w-110">
           Przebieg:
         </label>
         <input
@@ -140,7 +140,7 @@ export default function AddVehicleForm({
         />
         <button
           type="submit"
-          className="py-2 mt-10 mx-auto w-40 text-lg bg-blue-300 cursor-pointer"
+          className="py-2 mt-5 mx-auto w-40 text-lg rounded-md bg-linear-to-br from-[#993434] to-[#D71F1F] cursor-pointer hover:from-[#D71F1F] hover:to-[#993434] transition-colors duration-300 shadow-md lg:mt-15 xl:mt-30"
         >
           Dodaj
         </button>
