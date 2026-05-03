@@ -14,7 +14,7 @@ export default function AddVehicleBtn({
       type="button"
       aria-label={name}
       onClick={onClick}
-      className="relative group w-full max-w-175 h-55 shadow-md rounded-md cursor-pointer overflow-hidden md:h-60 lg:max-w-120 lg:h-150"
+      className="relative group w-full max-w-175 h-55 shadow-md rounded-md cursor-pointer overflow-hidden md:h-60 lg:max-w-90 xl:max-w-120 lg:h-150"
     >
       <img
         src={`${buttonType === "car" ? "/img/lakeblog-automobile-7152396_1280.jpg" : "/img/phillipcspence-motorcycle-5026152_1280.jpg"}`}

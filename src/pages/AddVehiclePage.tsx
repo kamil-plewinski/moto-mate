@@ -1,7 +1,6 @@
 import { useState } from "react";
 import AddVehicleBtn from "../components/page-components/add-vehicle/AddVehicleBtn";
 import AddVehicleForm from "../components/page-components/add-vehicle/AddVehicleForm";
-import SideBar from "../components/SideBar";
 
 type VehicleTypes = "car" | "motorcycle";
 
@@ -19,12 +18,11 @@ export default function AddVehiclePage() {
   };
 
   return (
-    <div className="grid grid-cols-1 gap-4 m-4 lg:grid-cols-5 lg:grid-rows-[auto_2fr_2fr] lg:pb-0 lg:mx-0 lg:h-[80vh] overflow-hidden relative">
-      <SideBar />
+    <div className="grid grid-cols-1 gap-4 m-4 lg:grid-cols-4 lg:grid-rows-[auto_2fr_2fr] lg:pb-0 lg:mx-0 lg:h-[80vh] overflow-hidden relative">
       <h1 className="text-xl my-4 ml-4 lg:col-span-2 lg:text-3xl">
         Wybierz typ pojazdu
       </h1>
-      <div className="grid place-items-center gap-6 md:h-150 lg:grid-cols-2 lg:gap-8 lg:col-span-4 lg:mt-6 xl:px-[4em]">
+      <div className="grid place-items-center gap-6 md:h-150 lg:grid-cols-2 lg:gap-8 lg:col-span-4 lg:mt-6 xl:px-[5em]">
         <AddVehicleBtn
           name="Dodaj samochód"
           buttonType="car"
