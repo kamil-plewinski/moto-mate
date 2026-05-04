@@ -40,7 +40,7 @@ export default function SideBar() {
   });
 
   return (
-    <nav className="hidden py-10 px-2 custom-background w-full h-full lg:row-[1/_span_3] lg:flex lg:flex-col xl:px-5 2xl:px-10">
+    <nav className="hidden py-10 px-2 custom-background w-full h-full lg:row-[1/_span_1] lg:flex lg:flex-col">
       {renderedDesktopNavItems}
     </nav>
   );
