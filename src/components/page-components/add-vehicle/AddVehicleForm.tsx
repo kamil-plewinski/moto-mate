@@ -73,10 +73,10 @@ export default function AddVehicleForm({
   };
 
   return (
-    <div
-      onClick={closeForm}
-      className="fixed inset-0 flex items-center justify-center bg-black/40 backdrop-blur-md z-10"
-    >
+    // <div
+    //   onClick={closeForm}
+    //   className="fixed inset-0 flex items-center justify-center bg-black/40 backdrop-blur-md z-10"
+    // >
       <form
         onClick={(e) => e.stopPropagation()}
         onSubmit={submitForm}
@@ -148,6 +148,6 @@ export default function AddVehicleForm({
           Dodaj
         </button>
       </form>
-    </div>
+    // </div>
   );
 }
