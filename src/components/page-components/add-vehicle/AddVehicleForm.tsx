@@ -73,76 +73,79 @@ export default function AddVehicleForm({
   };
 
   return (
-      <form
-        onClick={(e) => e.stopPropagation()}
-        onSubmit={submitForm}
-        className="relative w-full mx-2 flex flex-col items-center justify-center px-10 py-12 custom-background rounded-xl text-sm shadow-md md:mx-10 md:text-md lg:flex-row-reverse lg:justify-around lg:gap-6 lg:max-w-300 lg:py-30 xl:py-36 xl:px-14"
+    <form
+      onClick={(e) => e.stopPropagation()}
+      onSubmit={submitForm}
+      className="relative w-full mx-2 flex flex-col items-center justify-center px-10 py-12 custom-background rounded-xl text-sm shadow-md md:mx-10 md:text-md lg:flex-row-reverse lg:justify-around lg:gap-6 lg:max-w-300 lg:py-30 xl:py-36 xl:px-14"
+    >
+      <button
+        type="button"
+        onClick={closeForm}
+        className="absolute top-0 right-0 m-3 cursor-pointer md:m-6 "
       >
-        <button
-          type="button"
-          onClick={closeForm}
-          className="absolute top-0 right-0 m-3 cursor-pointer md:m-6 "
-        >
-          <X size={34} />
-        </button>
-        <div>
-          <img
-            id="vehicle-photo"
-            src={config.defaultPhoto}
-            alt="Zdjęcie wybranego pojazdu"
-            className="mt-4 w-full max-w-100 shadow-md rounded-md md:max-w-120 lg:mt-0"
-          />
-        </div>
-        <div className="my-10 max-w-120 md:max-w-140 lg:max-w-120 lg:my-0">
-          <label htmlFor="brand">Marka:</label>
-          <input
-            id="brand"
-            name="brand"
-            type="text"
-            placeholder={config.brandPlaceholder}
-            className={inputClasses}
-            required
-          />
-          <label htmlFor="model" className={labelClasses}>
-            Model:
-          </label>
-          <input
-            id="model"
-            name="model"
-            type="text"
-            placeholder={config.modelPlaceholder}
-            className={inputClasses}
-            required
-          />
-          <label htmlFor="year" className={labelClasses}>
-            Rok produkcji:
-          </label>
-          <input
-            id="year"
-            name="year"
-            type="number"
-            placeholder={config.yearPlaceholder}
-            className={inputClasses}
-            required
-          />
-          <label htmlFor="odometer" className={labelClasses}>
-            Przebieg:
-          </label>
-          <input
-            id="odometer"
-            name="odometer"
-            type="number"
-            placeholder={config.odometerPlaceholder}
-            className={inputClasses}
-            required
-          />
-        </div>
-        <button
-          type="submit"
-          className="py-2 mx-auto w-40 text-lg rounded-md bg-linear-to-br from-[#993434] to-[#D71F1F] cursor-pointer hover:from-[#D71F1F] hover:to-[#993434] transition-colors duration-300 shadow-md lg:absolute lg:bottom-0 lg:left-[50%] lg:translate-x-[-50%] lg:mb-8"
-        >
-          Dodaj
-        </button>
-      </form>
+        <X
+          size={34}
+          className="text-gray-200 hover:text-[#D71F1F] transition-colors duration-200"
+        />
+      </button>
+      <div>
+        <img
+          id="vehicle-photo"
+          src={config.defaultPhoto}
+          alt="Zdjęcie wybranego pojazdu"
+          className="mt-4 w-full max-w-100 shadow-md rounded-md md:max-w-120 lg:mt-0"
+        />
+      </div>
+      <div className="my-10 max-w-120 md:max-w-140 lg:max-w-120 lg:my-0">
+        <label htmlFor="brand">Marka:</label>
+        <input
+          id="brand"
+          name="brand"
+          type="text"
+          placeholder={config.brandPlaceholder}
+          className={inputClasses}
+          required
+        />
+        <label htmlFor="model" className={labelClasses}>
+          Model:
+        </label>
+        <input
+          id="model"
+          name="model"
+          type="text"
+          placeholder={config.modelPlaceholder}
+          className={inputClasses}
+          required
+        />
+        <label htmlFor="year" className={labelClasses}>
+          Rok produkcji:
+        </label>
+        <input
+          id="year"
+          name="year"
+          type="number"
+          placeholder={config.yearPlaceholder}
+          className={inputClasses}
+          required
+        />
+        <label htmlFor="odometer" className={labelClasses}>
+          Przebieg:
+        </label>
+        <input
+          id="odometer"
+          name="odometer"
+          type="number"
+          placeholder={config.odometerPlaceholder}
+          className={inputClasses}
+          required
+        />
+      </div>
+      <button
+        type="submit"
+        className="py-2 mx-auto w-40 text-lg rounded-md bg-linear-to-br from-[#993434] to-[#D71F1F] cursor-pointer hover:from-[#D71F1F] hover:to-[#993434] transition-colors duration-300 shadow-md lg:absolute lg:bottom-0 lg:left-[50%] lg:translate-x-[-50%] lg:mb-8"
+      >
+        Dodaj
+      </button>
+    </form>
   );
 }
