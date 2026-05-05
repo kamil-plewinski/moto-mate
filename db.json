@@ -23,6 +23,15 @@
       "year": 1999,
       "odometer": 600000,
       "id": "2LGY35ioG-I"
+    },
+    {
+      "type": "motorcycle",
+      "photo": "/img/ds_30-mode-4783281_640.jpg",
+      "brand": "Kawasaki",
+      "model": "Z1000",
+      "year": 2010,
+      "odometer": 32000,
+      "id": "lopAVkME67o"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
