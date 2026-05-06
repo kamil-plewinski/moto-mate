@@ -1,6 +1,10 @@
 import type { VehicleType } from "./vehicleType";
 
-export default function VehicleCard({ vehicle }: { vehicle: VehicleType }) {
+type VehicleCardProps = {
+  vehicle: VehicleType;
+};
+
+export default function VehicleCard({ vehicle } : VehicleCardProps) {
   return (
     <div className="bg-gray-400 rounded-md">
       <p>{vehicle.type}</p>
