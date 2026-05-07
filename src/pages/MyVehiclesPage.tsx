@@ -31,8 +31,32 @@ export default function MyVehiclesPage() {
     fetchVehicles();
   }, []);
 
+  const deleteVehicle = async (id: number) => {
+    try {
+      const res = await fetch(`http://localhost:3001/vehicles/${id}`, {
+        method: "DELETE",
+      });
+      
+      if (!res.ok) {
+        throw new Error("Nie udało się usunąć pojazdu");
+      }
+
+      setVehiclesList((prev) => {
+        return prev.filter((vehicle) => vehicle.id !== id);
+      });
+    } catch (err) {
+      console.log("Wystąpił błąd", err);
+    }
+  };
+
   const renderedVehicles = vehiclesList.map((vehicle) => {
-    return <VehicleCard key={vehicle.id} vehicle={vehicle} />;
+    return (
+      <VehicleCard
+        key={vehicle.id}
+        vehicle={vehicle}
+        deleteVehicle={deleteVehicle}
+      />
+    );
   });
 
   let content;

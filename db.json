@@ -1,37 +1,22 @@
 {
   "vehicles": [
     {
-      "type": "car",
-      "brand": "opel",
-      "model": "corsa",
-      "year": 1999,
-      "odometer": 500500,
-      "id": "K1eNZbIml2g"
-    },
-    {
       "type": "motorcycle",
-      "brand": "Honda",
-      "model": "Cbr1000rr",
-      "year": 2005,
+      "photo": "/img/ds_30-mode-4783281_640.jpg",
+      "brand": "Kawasaki",
+      "model": "z1000",
+      "year": 2007,
       "odometer": 32000,
-      "id": "mpL_Hq4gf0I"
-    },
-    {
-      "type": "car",
-      "brand": "fiat",
-      "model": "500",
-      "year": 1999,
-      "odometer": 600000,
-      "id": "2LGY35ioG-I"
+      "id": "46QXRRYW0Tg"
     },
     {
       "type": "motorcycle",
       "photo": "/img/ds_30-mode-4783281_640.jpg",
-      "brand": "Kawasaki",
-      "model": "Z1000",
-      "year": 2010,
-      "odometer": 32000,
-      "id": "lopAVkME67o"
+      "brand": "Yamaha",
+      "model": "R6",
+      "year": 1999,
+      "odometer": 54000,
+      "id": "7g7sI1aMNys"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
