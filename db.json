@@ -1,22 +1,22 @@
 {
   "vehicles": [
     {
-      "type": "motorcycle",
-      "photo": "/img/ds_30-mode-4783281_640.jpg",
-      "brand": "Kawasaki",
-      "model": "z1000",
-      "year": 2007,
-      "odometer": 32000,
-      "id": "46QXRRYW0Tg"
+      "type": "car",
+      "photo": "/img/oskaline-car-63930_640.jpg",
+      "brand": "Ford",
+      "model": "Mustang",
+      "year": 2010,
+      "odometer": 132000,
+      "id": "UCbZO-dpRxg"
     },
     {
-      "type": "motorcycle",
-      "photo": "/img/ds_30-mode-4783281_640.jpg",
-      "brand": "Yamaha",
-      "model": "R6",
-      "year": 1999,
-      "odometer": 54000,
-      "id": "7g7sI1aMNys"
+      "type": "car",
+      "photo": "/img/oskaline-car-63930_640.jpg",
+      "brand": "Ford",
+      "model": "Mustang",
+      "year": 2010,
+      "odometer": 132000,
+      "id": "UCbZO-dpRxg"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
