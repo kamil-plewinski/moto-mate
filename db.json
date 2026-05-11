@@ -3,20 +3,11 @@
     {
       "type": "car",
       "photo": "/img/oskaline-car-63930_640.jpg",
-      "brand": "Ford",
-      "model": "Mustang",
-      "year": 2010,
-      "odometer": 132000,
-      "id": "UCbZO-dpRxg"
-    },
-    {
-      "type": "car",
-      "photo": "/img/oskaline-car-63930_640.jpg",
-      "brand": "Ford",
-      "model": "Mustang",
-      "year": 2010,
-      "odometer": 132000,
-      "id": "UCbZO-dpRxg"
+      "brand": "opel",
+      "model": "corsa",
+      "year": 66767,
+      "odometer": 3443,
+      "id": "y36ESvGBy6Q"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

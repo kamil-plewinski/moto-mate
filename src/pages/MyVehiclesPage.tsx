@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { AnimatePresence } from "motion/react";
 import VehicleCard from "../components/page-components/my-vehicles/VehicleCard";
 import type { VehicleType } from "../components/page-components/my-vehicles/vehicleType";
 
@@ -73,9 +74,9 @@ export default function MyVehiclesPage() {
 
   return (
     <div className="overflow-y-hidden">
-      <h1 className="text-2xl my-6 md:my-0">Moje pojazdy</h1>
-      <div className="flex flex-col items-center justify-center gap-x-6 gap-y-10 m-2 mb-0 pb-24 md:flex-row md:items-start md:justify-start md:flex-wrap lg:pb-14 lg:pt-4 lg:h-[80vh] lg:overflow-y-auto">
-        {content}
+      <h1 className="text-2xl my-6 lg:my-2">Moje pojazdy</h1>
+      <div className="flex flex-col items-center justify-center gap-x-6 gap-y-10 m-2 mb-0 pb-24 md:flex-row lg:items-start lg:justify-start md:flex-wrap lg:pb-14 lg:pt-4 lg:h-[80vh] lg:overflow-y-auto">
+        <AnimatePresence>{content}</AnimatePresence>
       </div>
     </div>
   );

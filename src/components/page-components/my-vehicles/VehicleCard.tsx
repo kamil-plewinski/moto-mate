@@ -1,3 +1,4 @@
+import { motion } from "motion/react";
 import type { VehicleType } from "./vehicleType";
 import { X } from "lucide-react";
 
@@ -11,7 +12,13 @@ export default function VehicleCard({
   deleteVehicle,
 }: VehicleCardProps) {
   return (
-    <div className="pt-2 pb-4 max-w-75 custom-background border border-black/40 rounded-xl shadow-[0_5px_15px_rgba(0,0,0,0.35)] hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(0,0,0,0.5)] transition-all duration-300">
+    <motion.div
+      whileHover={{ y: -4 }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
+      exit={{ opacity: 0, y: 4, scale: 0.9 }}
+      layout
+      className="pt-2 pb-4 max-w-75 custom-background border border-black/40 rounded-xl shadow-[0_5px_15px_rgba(0,0,0,0.35)]  hover:shadow-[0_10px_25px_rgba(0,0,0,0.5)] transition-shadow"
+    >
       <X
         size={26}
         className="ml-auto mr-2 cursor-pointer text-gray-300 hover:text-[#D71F1F] transition-colors duration-200 "
@@ -40,6 +47,6 @@ export default function VehicleCard({
           </p>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
