@@ -2,11 +2,14 @@ import { useState, useEffect } from "react";
 import { AnimatePresence } from "motion/react";
 import VehicleCard from "../components/page-components/my-vehicles/VehicleCard";
 import type { VehicleType } from "../components/page-components/my-vehicles/vehicleType";
+import { usePopup } from "../components/popup/usePopup";
 
 export default function MyVehiclesPage() {
   const [vehiclesList, setVehiclesList] = useState<VehicleType[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
+
+  const { showPopup } = usePopup();
 
   useEffect(() => {
     setIsLoading(true);
@@ -42,11 +45,13 @@ export default function MyVehiclesPage() {
         throw new Error("Nie udało się usunąć pojazdu");
       }
 
+      showPopup("Pojazd został usunięty.", "success");
       setVehiclesList((prev) => {
         return prev.filter((vehicle) => vehicle.id !== id);
       });
     } catch (err) {
-      console.log("Wystąpił błąd", err);
+      console.error("Wystąpił błąd", err);
+      showPopup("Wystąpił błąd. Nie udało się usunąć pojazdu", "error");
     }
   };
 
