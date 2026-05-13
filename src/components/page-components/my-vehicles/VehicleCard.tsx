@@ -4,13 +4,10 @@ import { X } from "lucide-react";
 
 type VehicleCardProps = {
   vehicle: VehicleType;
-  deleteVehicle: (id: number) => void;
+  openModal: (id: number) => void;
 };
 
-export default function VehicleCard({
-  vehicle,
-  deleteVehicle,
-}: VehicleCardProps) {
+export default function VehicleCard({ vehicle, openModal }: VehicleCardProps) {
   return (
     <motion.div
       whileHover={{ y: -4 }}
@@ -22,7 +19,7 @@ export default function VehicleCard({
       <X
         size={26}
         className="ml-auto mr-2 cursor-pointer text-gray-300 hover:text-[#D71F1F] transition-colors duration-200 "
-        onClick={() => deleteVehicle(vehicle.id)}
+        onClick={() => openModal(vehicle.id)}
       />
 
       <img

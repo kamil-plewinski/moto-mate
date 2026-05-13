@@ -9,6 +9,8 @@ export default function MyVehiclesPage() {
   const [vehiclesList, setVehiclesList] = useState<VehicleType[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [vehicleToDelete, setVehicleToDelete] = useState<number | null>(null);
 
   const { showPopup } = usePopup();
 
@@ -36,6 +38,15 @@ export default function MyVehiclesPage() {
     fetchVehicles();
   }, []);
 
+  const openModal = (id: number) => {
+    setVehicleToDelete(id);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   const deleteVehicle = async (id: number) => {
     try {
       const res = await fetch(`http://localhost:3001/vehicles/${id}`, {
@@ -46,6 +57,7 @@ export default function MyVehiclesPage() {
         throw new Error("Nie udało się usunąć pojazdu");
       }
 
+      closeModal();
       showPopup("Pojazd został usunięty.", "success");
       setVehiclesList((prev) => {
         return prev.filter((vehicle) => vehicle.id !== id);
@@ -58,11 +70,7 @@ export default function MyVehiclesPage() {
 
   const renderedVehicles = vehiclesList.map((vehicle) => {
     return (
-      <VehicleCard
-        key={vehicle.id}
-        vehicle={vehicle}
-        deleteVehicle={deleteVehicle}
-      />
+      <VehicleCard key={vehicle.id} vehicle={vehicle} openModal={openModal} />
     );
   });
 
@@ -81,7 +89,13 @@ export default function MyVehiclesPage() {
   return (
     <div className="overflow-y-hidden">
       <h1 className="text-2xl my-6 lg:my-2">Moje pojazdy</h1>
-      <DeleteModal />
+      {isModalOpen && vehicleToDelete !== null && (
+        <DeleteModal
+          closeModal={closeModal}
+          vehicleToDelete={vehicleToDelete}
+          deleteVehicle={deleteVehicle}
+        />
+      )}
       <div className="flex flex-col items-center justify-center gap-x-6 gap-y-10 m-2 mb-0 pb-24 md:flex-row lg:items-start lg:justify-start md:flex-wrap lg:pb-14 lg:pt-4 lg:h-[80vh] lg:overflow-y-auto">
         <AnimatePresence>{content}</AnimatePresence>
       </div>

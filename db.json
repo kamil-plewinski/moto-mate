@@ -3,20 +3,20 @@
     {
       "type": "motorcycle",
       "photo": "/img/ds_30-mode-4783281_640.jpg",
-      "brand": "Honda",
-      "model": "Cbr1000rr",
-      "year": 2010,
-      "odometer": 32000,
-      "id": "-_7T4s6ln2g"
+      "brand": "31232123",
+      "model": "313213212",
+      "year": 12332321,
+      "odometer": 123123213,
+      "id": "HuJGxJtHl94"
     },
     {
-      "type": "motorcycle",
-      "photo": "/img/ds_30-mode-4783281_640.jpg",
-      "brand": "Suzuki",
-      "model": "GSXR",
-      "year": 2017,
-      "odometer": 22000,
-      "id": "hATLC08UjyA"
+      "type": "car",
+      "photo": "/img/oskaline-car-63930_640.jpg",
+      "brand": "312321",
+      "model": "321321321",
+      "year": 321321321,
+      "odometer": 321231321,
+      "id": "KRSKKAq5tQg"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
