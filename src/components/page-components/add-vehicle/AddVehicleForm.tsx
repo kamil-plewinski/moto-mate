@@ -51,6 +51,7 @@ export default function AddVehicleForm({
       model: model as string,
       year: Number(year),
       odometer: Number(odometer),
+      isActive: false,
     };
 
     try {

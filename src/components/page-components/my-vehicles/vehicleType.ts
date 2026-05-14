@@ -6,4 +6,5 @@ export type VehicleType = {
   model: "string";
   year: number;
   odometer: number;
+  isActive: boolean;
 };
