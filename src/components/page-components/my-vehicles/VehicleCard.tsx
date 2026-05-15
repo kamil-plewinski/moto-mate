@@ -1,13 +1,18 @@
 import { motion } from "motion/react";
 import type { VehicleType } from "./vehicleType";
-import { X } from "lucide-react";
+import { X, Star } from "lucide-react";
 
 type VehicleCardProps = {
   vehicle: VehicleType;
   openModal: (id: number) => void;
+  setActiveVehicle: (id: number) => void;
 };
 
-export default function VehicleCard({ vehicle, openModal }: VehicleCardProps) {
+export default function VehicleCard({
+  vehicle,
+  openModal,
+  setActiveVehicle,
+}: VehicleCardProps) {
   return (
     <motion.div
       whileHover={{ y: -4 }}
@@ -16,11 +21,18 @@ export default function VehicleCard({ vehicle, openModal }: VehicleCardProps) {
       layout
       className="pt-2 pb-4 max-w-75 custom-background border border-black/40 rounded-xl shadow-[0_5px_15px_rgba(0,0,0,0.35)]  hover:shadow-[0_10px_25px_rgba(0,0,0,0.5)] transition-shadow"
     >
-      <X
-        size={26}
-        className="ml-auto mr-2 cursor-pointer text-gray-300 hover:text-[#D71F1F] transition-colors duration-200 "
-        onClick={() => openModal(vehicle.id)}
-      />
+      <div className="flex items-center justify-between">
+        <Star
+          size={22}
+          className={`${vehicle.isActive === true ? "text-yellow-500 fill-yellow-500" : ""} ml-3 cursor-pointer text-gray-300 fill-transparent hover:fill-yellow-500 hover:text-yellow-500 transition-colors duration-200`}
+          onClick={() => setActiveVehicle(vehicle.id)}
+        />
+        <X
+          size={26}
+          className=" mr-3 cursor-pointer text-gray-300 hover:text-[#D71F1F] transition-colors duration-200 "
+          onClick={() => openModal(vehicle.id)}
+        />
+      </div>
 
       <img
         src={vehicle.photo}

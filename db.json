@@ -23,16 +23,6 @@
     {
       "type": "motorcycle",
       "photo": "/img/ds_30-mode-4783281_640.jpg",
-      "brand": "Komarek",
-      "model": "Ogar 200",
-      "year": 1985,
-      "odometer": 1023,
-      "isActive": false,
-      "id": "j79mB3-fGvk"
-    },
-    {
-      "type": "motorcycle",
-      "photo": "/img/ds_30-mode-4783281_640.jpg",
       "brand": "Kawasaki",
       "model": "Vulcan",
       "year": 2011,
