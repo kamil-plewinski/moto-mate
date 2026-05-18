@@ -8,7 +8,7 @@
       "year": 3213,
       "odometer": 3123231232,
       "id": "_jrCq4POsi4",
-      "isActive": false
+      "isActive": true
     },
     {
       "type": "car",
@@ -27,7 +27,7 @@
       "model": "Vulcan",
       "year": 2011,
       "odometer": 32000,
-      "isActive": true,
+      "isActive": false,
       "id": "IMA96I6SiFI"
     }
   ],

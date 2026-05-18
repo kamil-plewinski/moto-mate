@@ -26,7 +26,7 @@ export default function MyVehiclesPage() {
       setVehiclesList(data);
     } catch (err) {
       setIsError(true);
-      console.log("wystąpił błąd", err);
+      console.error("wystąpił błąd", err);
     } finally {
       setIsLoading(false);
     }
@@ -48,7 +48,7 @@ export default function MyVehiclesPage() {
     setIsModalOpen(false);
   };
 
-  const setActiveVehicle = async (id: number) => {
+  const setActiveVehicle = async (id: number, selectedVehicle: VehicleType) => {
     try {
       await Promise.all(
         vehiclesList.map(async (vehicle) => {
@@ -71,9 +71,18 @@ export default function MyVehiclesPage() {
         }),
       );
 
+      showPopup(
+        `Pojazd ${selectedVehicle.brand} ${selectedVehicle.model} został wybrany jako ulubiony.`,
+        "favourite",
+      );
+
       await fetchVehicles();
     } catch (err) {
       console.error("Wystąpił błąd", err);
+      showPopup(
+        "Wystąpił błąd. Nie udało się wybrać ulubionego pojazdu.",
+        "error",
+      );
     }
   };
 

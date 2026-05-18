@@ -5,7 +5,7 @@ import { X, Star } from "lucide-react";
 type VehicleCardProps = {
   vehicle: VehicleType;
   openModal: (id: number) => void;
-  setActiveVehicle: (id: number) => void;
+  setActiveVehicle: (id: number, vehicle: VehicleType) => void;
 };
 
 export default function VehicleCard({
@@ -25,7 +25,7 @@ export default function VehicleCard({
         <Star
           size={22}
           className={`${vehicle.isActive === true ? "text-yellow-500 fill-yellow-500" : ""} ml-3 cursor-pointer text-gray-300 fill-transparent hover:fill-yellow-500 hover:text-yellow-500 transition-colors duration-200`}
-          onClick={() => setActiveVehicle(vehicle.id)}
+          onClick={() => setActiveVehicle(vehicle.id, vehicle)}
         />
         <X
           size={26}

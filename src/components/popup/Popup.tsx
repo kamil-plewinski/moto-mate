@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { usePopup } from "./usePopup";
-import { Check, CircleAlert } from "lucide-react";
+import { Check, CircleAlert, Star } from "lucide-react";
 
 export default function Popup() {
   const { isOpen, message, type, closePopup } = usePopup();
@@ -8,6 +8,7 @@ export default function Popup() {
   const popupStyles = {
     success: "bg-[#42cc45]",
     error: "bg-[#ed776a]",
+    favourite: "bg-yellow-500",
   };
 
   const style = popupStyles[type];
@@ -23,12 +24,15 @@ export default function Popup() {
   }, [isOpen, closePopup]);
 
   return (
-    <div role="alert"
+    <div
+      role="alert"
       className={`fixed flex items-center top-0 right-0 mt-[4em] mr-[1em] w-72 py-5 px-3 bg-white text-gray-700 rounded-lg overflow-hidden ${isOpen ? "translate-x-[0%] opacity-100" : "translate-x-[120%] opacity-0 pointer-events-none"} transition-all duration-300 ease-in-out z-10`}
     >
       <div className={`${style} p-[.2em] mr-2 rounded-[50%]`}>
         {type === "success" ? (
           <Check color="white" size={22} strokeWidth="2" />
+        ) : type === "favourite" ? (
+          <Star color="white" strokeWidth="2" className="p-0.5" />
         ) : (
           <CircleAlert color="white" size={22} strokeWidth="2" />
         )}
