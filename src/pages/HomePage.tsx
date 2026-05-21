@@ -6,6 +6,7 @@ import type { VehicleType } from "../components/page-components/my-vehicles/vehi
 type CardConfig = {
   title: string;
   content: number | string | undefined;
+  contentStyle?: string;
   gridArea: string;
 };
 
@@ -39,17 +40,19 @@ export default function HomePage() {
   const cards: CardConfig[] = [
     {
       title: "Całkowite koszty",
-      content: "",
+      content: "Funkcja kalkulacji kosztów dostępna już wkrótce!",
+      contentStyle: "text-sm text-gray-300",
       gridArea: "lg:col-[1/_span_1] lg:row-[1/_span_1]",
     },
     {
       title: "Koszty w tym miesiącu",
-      content: "",
+      content: "Funkcja kalkulacji kosztów dostępna już wkrótce!",
+      contentStyle: "text-sm text-gray-300",
       gridArea: "lg:col-[2/_span_1] lg:row-[1/_span_1]",
     },
     {
       title: "Przebieg",
-      content: activeVehicle?.odometer + " km.",
+      content: activeVehicle ? `${activeVehicle.odometer} km.` : "Brak danych",
       gridArea: "lg:col-[3/_span_1] lg:row-[1/_span_1]",
     },
   ];
@@ -57,7 +60,11 @@ export default function HomePage() {
   const renderedCards = cards.map((card) => {
     return (
       <div key={card.title} className={card.gridArea}>
-        <InfoCard cardTitle={card.title} content={card.content} />
+        <InfoCard
+          cardTitle={card.title}
+          content={card.content}
+          contentStyle={card.contentStyle}
+        />
       </div>
     );
   });
