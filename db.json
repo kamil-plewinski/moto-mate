@@ -4,41 +4,11 @@
       "type": "motorcycle",
       "photo": "/img/ds_30-mode-4783281_640.jpg",
       "brand": "Honda",
-      "model": "f10",
-      "year": 3213,
-      "odometer": 3123231232,
-      "id": "_jrCq4POsi4",
-      "isActive": false
-    },
-    {
-      "type": "car",
-      "photo": "/img/oskaline-car-63930_640.jpg",
-      "brand": "peżot",
-      "model": "231432",
-      "year": 42423,
-      "odometer": 42323,
-      "isActive": false,
-      "id": "AqeYtXMMI9E"
-    },
-    {
-      "type": "motorcycle",
-      "photo": "/img/ds_30-mode-4783281_640.jpg",
-      "brand": "Komarek",
-      "model": "Ogar 200",
-      "year": 1985,
-      "odometer": 1023,
-      "isActive": false,
-      "id": "j79mB3-fGvk"
-    },
-    {
-      "type": "motorcycle",
-      "photo": "/img/ds_30-mode-4783281_640.jpg",
-      "brand": "Kawasaki",
-      "model": "Vulcan",
-      "year": 2011,
-      "odometer": 32000,
+      "model": "CBR 1000 RR",
+      "year": 2010,
+      "odometer": 43230,
       "isActive": true,
-      "id": "IMA96I6SiFI"
+      "id": "EiJeQ-viVl8"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

@@ -3,7 +3,7 @@ export type VehicleType = {
   type: "car" | "motorcycle";
   photo: string;
   brand: string;
-  model: "string";
+  model: string;
   year: number;
   odometer: number;
   isActive: boolean;

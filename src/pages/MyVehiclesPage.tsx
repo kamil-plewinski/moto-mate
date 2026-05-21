@@ -14,27 +14,28 @@ export default function MyVehiclesPage() {
 
   const { showPopup } = usePopup();
 
+  const fetchVehicles = async () => {
+    try {
+      const res = await fetch("http://localhost:3001/vehicles");
+
+      if (!res.ok) {
+        throw new Error("Błąd wczytywania pojazdów");
+      }
+
+      const data = await res.json();
+      setVehiclesList(data);
+    } catch (err) {
+      setIsError(true);
+      console.error("wystąpił błąd", err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   useEffect(() => {
     setIsLoading(true);
     setIsError(false);
 
-    const fetchVehicles = async () => {
-      try {
-        const res = await fetch("http://localhost:3001/vehicles");
-
-        if (!res.ok) {
-          throw new Error("Błąd wczytywania pojazdów");
-        }
-
-        const data = await res.json();
-        setVehiclesList(data);
-      } catch (err) {
-        setIsError(true);
-        console.log("wystąpił błąd", err);
-      } finally {
-        setIsLoading(false);
-      }
-    };
     fetchVehicles();
   }, []);
 
@@ -45,6 +46,44 @@ export default function MyVehiclesPage() {
 
   const closeModal = () => {
     setIsModalOpen(false);
+  };
+
+  const setActiveVehicle = async (id: number, selectedVehicle: VehicleType) => {
+    try {
+      await Promise.all(
+        vehiclesList.map(async (vehicle) => {
+          const isActive = vehicle.id === id;
+
+          const res = await fetch(
+            `http://localhost:3001/vehicles/${vehicle.id}`,
+            {
+              method: "PATCH",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ isActive }),
+            },
+          );
+
+          if (!res.ok) {
+            throw new Error("Nie udało się zaktualizować danych");
+          }
+        }),
+      );
+
+      showPopup(
+        `Pojazd ${selectedVehicle.brand} ${selectedVehicle.model} został wybrany jako ulubiony.`,
+        "favourite",
+      );
+
+      await fetchVehicles();
+    } catch (err) {
+      console.error("Wystąpił błąd", err);
+      showPopup(
+        "Wystąpił błąd. Nie udało się wybrać ulubionego pojazdu.",
+        "error",
+      );
+    }
   };
 
   const deleteVehicle = async (id: number) => {
@@ -70,7 +109,12 @@ export default function MyVehiclesPage() {
 
   const renderedVehicles = vehiclesList.map((vehicle) => {
     return (
-      <VehicleCard key={vehicle.id} vehicle={vehicle} openModal={openModal} />
+      <VehicleCard
+        key={vehicle.id}
+        vehicle={vehicle}
+        openModal={openModal}
+        setActiveVehicle={setActiveVehicle}
+      />
     );
   });
 

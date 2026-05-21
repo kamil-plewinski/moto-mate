@@ -1,4 +1,4 @@
-export type PopupType = "success" | "error";
+export type PopupType = "success" | "error" | "favourite";
 
 export type PopupContextType = {
   isOpen: boolean;
