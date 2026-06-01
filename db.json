@@ -4,11 +4,11 @@
       "type": "motorcycle",
       "photo": "/img/ds_30-mode-4783281_640.jpg",
       "brand": "Honda",
-      "model": "CBR 1000 RR",
-      "year": 2010,
-      "odometer": 43230,
+      "model": "Cbr 600 RR",
+      "year": 2008,
+      "odometer": 34000,
       "isActive": true,
-      "id": "EiJeQ-viVl8"
+      "id": "ciqf9kckT5Y"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
