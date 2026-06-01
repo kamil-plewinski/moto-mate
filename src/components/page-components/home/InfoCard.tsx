@@ -21,7 +21,7 @@ export default function InfoCard({
   return (
     <div className="relative custom-background p-5 w-full h-38 rounded-xl rounded-tl-none shadow-lg overflow-clip">
       <h2 className="text-lg font-semibold tracking-wide">{cardTitle}</h2>
-      <p className={`relative mt-9 text-lg z-10 ${contentStyle}`}>{content}</p>
+      <p className={`relative mt-6 text-lg xl:mt-9 z-10 ${contentStyle}`}>{content}</p>
       <div className={decorLineClasses}></div>
       <div className={decorCircleOneClasses}></div>
       <div className={decorCircleTwoClasses}></div>

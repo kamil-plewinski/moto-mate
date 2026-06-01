@@ -54,6 +54,10 @@ export default function VehicleCard({
             <span className="font-semibold text-white">Przebieg:</span>{" "}
             {vehicle.odometer} km.
           </p>
+          <p>
+            <span className="font-semibold text-white">Silnik:</span>{" "}
+            {vehicle.engine}
+          </p>
         </div>
       </div>
     </motion.div>

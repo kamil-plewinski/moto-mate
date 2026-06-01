@@ -1,14 +1,26 @@
 {
   "vehicles": [
     {
+      "type": "car",
+      "photo": "/img/oskaline-car-63930_640.jpg",
+      "brand": "Audi",
+      "model": "a4",
+      "year": 2011,
+      "odometer": 312000,
+      "engine": "1.8T",
+      "isActive": true,
+      "id": "fAyxmGztcDM"
+    },
+    {
       "type": "motorcycle",
       "photo": "/img/ds_30-mode-4783281_640.jpg",
       "brand": "Honda",
-      "model": "Cbr 600 RR",
-      "year": 2008,
+      "model": "Cbr1000rr",
+      "year": 2011,
       "odometer": 34000,
-      "isActive": true,
-      "id": "ciqf9kckT5Y"
+      "engine": "1000 cm3",
+      "isActive": false,
+      "id": "YCvJRHPmirQ"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
