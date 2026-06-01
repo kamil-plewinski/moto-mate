@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { AnimatePresence } from "motion/react";
+// import { AnimatePresence } from "motion/react";
 import VehicleCard from "../components/page-components/my-vehicles/VehicleCard";
 import type { VehicleType } from "../components/page-components/my-vehicles/vehicleType";
 import { usePopup } from "../components/popup/usePopup";
@@ -141,7 +141,7 @@ export default function MyVehiclesPage() {
         />
       )}
       <div className="flex flex-col items-center justify-center gap-x-6 gap-y-10 m-2 mb-0 pb-24 md:flex-row lg:items-start lg:justify-start md:flex-wrap lg:pb-14 lg:pt-4 lg:h-[80vh] lg:overflow-y-auto">
-        <AnimatePresence>{content}</AnimatePresence>
+        {content}
       </div>
     </div>
   );

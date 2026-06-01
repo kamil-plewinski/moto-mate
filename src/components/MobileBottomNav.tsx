@@ -59,7 +59,7 @@ export default function MobileBottomNav() {
 
   return (
     <nav
-      className={`${isMobileNavOpen ? "max-h-50" : "max-h-22"} fixed bottom-0 pt-3 custom-background w-full h-full text-center shadow-[0_-4px_8px_rgba(135,52,52,0.45)] transition-all ease-out duration-500 lg:hidden`}
+      className={`${isMobileNavOpen ? "max-h-50" : "max-h-22"} fixed bottom-0 pt-3 custom-background w-full h-full text-center shadow-[0_-4px_8px_rgba(135,52,52,0.45)] transition-all ease-out duration-500 lg:hidden z-10`}
     >
       <div className="grid grid-cols-3 grid-rows-2 place-items-center gap-y-8">
         <button onClick={toggleMobileMenu} className="cursor-pointer">
