@@ -13,6 +13,7 @@ const vehicleFormConfig = {
     modelPlaceholder: "Podaj model samochodu",
     yearPlaceholder: "Podaj rok produkcji samochodu",
     odometerPlaceholder: "Podaj przebieg samochodu w km.",
+    enginePlaceholder: "Np. 600 cm3, 1.8T lub 2.0TDI itp.",
   },
   motorcycle: {
     defaultPhoto: "/img/ds_30-mode-4783281_640.jpg",
@@ -20,6 +21,7 @@ const vehicleFormConfig = {
     modelPlaceholder: "Podaj model motocykla",
     yearPlaceholder: "Podaj rok produkcji motocykla",
     odometerPlaceholder: "Podaj przebieg motocykla w km.",
+    enginePlaceholder: "Np. 600 cm3, 1.8T lub 2.0TDI itp.",
   },
 };
 
@@ -43,6 +45,7 @@ export default function AddVehicleForm({
     const model = formData.get("model");
     const year = formData.get("year");
     const odometer = formData.get("odometer");
+    const engine = formData.get("engine");
 
     const newVehicle = {
       type: vehicleCategory,
@@ -51,6 +54,7 @@ export default function AddVehicleForm({
       model: model as string,
       year: Number(year),
       odometer: Number(odometer),
+      engine: engine as string,
       isActive: false,
     };
 
@@ -77,7 +81,7 @@ export default function AddVehicleForm({
     <form
       onClick={(e) => e.stopPropagation()}
       onSubmit={submitForm}
-      className="relative w-full mx-2 flex flex-col items-center justify-center px-10 py-12 custom-background rounded-xl text-sm shadow-md md:mx-10 md:text-md lg:flex-row-reverse lg:justify-around lg:gap-6 lg:max-w-300 lg:py-30 xl:py-36 xl:px-14"
+      className="relative w-full mx-2 flex flex-col items-center justify-center px-10 py-9 custom-background rounded-xl text-sm shadow-md md:mx-10 md:text-md lg:flex-row-reverse lg:justify-around lg:gap-6 lg:max-w-300 lg:py-30 xl:py-36 xl:px-14"
     >
       <button
         type="button"
@@ -97,7 +101,7 @@ export default function AddVehicleForm({
           className="mt-4 w-full max-w-100 shadow-md rounded-md md:max-w-120 lg:mt-0"
         />
       </div>
-      <div className="my-10 max-w-120 md:max-w-140 lg:max-w-120 lg:my-0">
+      <div className="my-5 max-w-120 md:max-w-140 lg:max-w-120 lg:my-0">
         <label htmlFor="brand">Marka:</label>
         <input
           id="brand"
@@ -137,6 +141,14 @@ export default function AddVehicleForm({
           name="odometer"
           type="number"
           placeholder={config.odometerPlaceholder}
+          className={inputClasses}
+          required
+        />
+        <label className={labelClasses}>Silnik:</label>
+        <input
+          id="engine"
+          name="engine"
+          placeholder={config.enginePlaceholder}
           className={inputClasses}
           required
         />

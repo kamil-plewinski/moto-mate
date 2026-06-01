@@ -25,7 +25,7 @@ export default function MyVehicle({ activeVehicle }: MyVehicleProps) {
   }
 
   return (
-    <div className="custom-background p-5 w-full max-w-130 rounded-xl shadow-lg lg:h-full lg:max-h-82 lg:col-[4/_span_1] lg:row-[1/_span_2] xl:max-h-100">
+    <div className="custom-background p-5 w-full max-w-130 rounded-xl shadow-lg lg:h-full lg:max-h-84 lg:col-[4/_span_1] lg:row-[1/_span_2] xl:max-h-102">
       <h2 className="text-2xl font-semibold tracking-wide lg:text-xl">
         Mój{" "}
         <span>
@@ -37,13 +37,16 @@ export default function MyVehicle({ activeVehicle }: MyVehicleProps) {
         alt={`zdjęcie pojazdu marki ${activeVehicle.brand}`}
         className="mt-5 w-full rounded-xl object-cover"
       />
-      <div className="flex items-center justify-between flex-wrap mt-7 text-lg">
-        <p className="font-semibold">
+      <div className="mt-5">
+        <p className="text-center font-semibold text-lg">
           {activeVehicle.brand} {activeVehicle.model}
         </p>
-        <p className="text-gray-200 ">Rok: {activeVehicle.year}</p>
+        <div className="my-4 h-px w-full bg-white/20 lg:w-[90%] lg:mx-auto lg:my-0 lg:mt-3"></div>
+        <div className="flex justify-around items-center flex-wrap">
+          <p className="mt-3 text-gray-200">Rok: {activeVehicle.year}</p>
+          <p className="mt-3 text-gray-200 ">Silnik: {activeVehicle.engine}</p>
+        </div>
       </div>
-      <div className="my-4 h-px w-full bg-white/20 lg:w-[90%] lg:mx-auto lg:my-0 lg:mt-7"></div>
     </div>
   );
 }
