@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import MyVehicle from "../components/page-components/home/MyVehicle";
 import InfoCard from "../components/page-components/home/InfoCard";
 import type { VehicleType } from "../components/page-components/my-vehicles/vehicleType";
+import { getVehicles } from "../api/vehicleApi";
 
 type CardConfig = {
   title: string;
@@ -16,13 +17,7 @@ export default function HomePage() {
   useEffect(() => {
     const fetchVehicles = async () => {
       try {
-        const res = await fetch("http://localhost:3001/vehicles");
-
-        if (!res.ok) {
-          throw new Error("Błąd wczytywania danych.");
-        }
-
-        const data = await res.json();
+        const data = await getVehicles();
 
         setVehicles(data);
       } catch (err) {

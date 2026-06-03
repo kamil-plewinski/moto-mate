@@ -1,9 +1,13 @@
 import { useState, useEffect } from "react";
-// import { AnimatePresence } from "motion/react";
 import VehicleCard from "../components/page-components/my-vehicles/VehicleCard";
 import type { VehicleType } from "../components/page-components/my-vehicles/vehicleType";
 import { usePopup } from "../components/popup/usePopup";
 import DeleteModal from "../components/page-components/my-vehicles/DeleteModal";
+import {
+  getVehicles,
+  updateVehicle,
+  deleteVehicleReq,
+} from "../api/vehicleApi";
 
 export default function MyVehiclesPage() {
   const [vehiclesList, setVehiclesList] = useState<VehicleType[]>([]);
@@ -16,13 +20,8 @@ export default function MyVehiclesPage() {
 
   const fetchVehicles = async () => {
     try {
-      const res = await fetch("http://localhost:3001/vehicles");
+      const data = await getVehicles();
 
-      if (!res.ok) {
-        throw new Error("Błąd wczytywania pojazdów");
-      }
-
-      const data = await res.json();
       setVehiclesList(data);
     } catch (err) {
       setIsError(true);
@@ -54,20 +53,7 @@ export default function MyVehiclesPage() {
         vehiclesList.map(async (vehicle) => {
           const isActive = vehicle.id === id;
 
-          const res = await fetch(
-            `http://localhost:3001/vehicles/${vehicle.id}`,
-            {
-              method: "PATCH",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({ isActive }),
-            },
-          );
-
-          if (!res.ok) {
-            throw new Error("Nie udało się zaktualizować danych");
-          }
+          return updateVehicle(vehicle.id, isActive);
         }),
       );
 
@@ -88,13 +74,7 @@ export default function MyVehiclesPage() {
 
   const deleteVehicle = async (id: number) => {
     try {
-      const res = await fetch(`http://localhost:3001/vehicles/${id}`, {
-        method: "DELETE",
-      });
-
-      if (!res.ok) {
-        throw new Error("Nie udało się usunąć pojazdu");
-      }
+      await deleteVehicleReq(id);
 
       closeModal();
       showPopup("Pojazd został usunięty.", "success");

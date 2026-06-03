@@ -9,3 +9,14 @@ export type VehicleType = {
   engine: string;
   isActive: boolean;
 };
+
+export type CreateVehicleDto = {
+  type: "car" | "motorcycle";
+  photo: string;
+  brand: string;
+  model: string;
+  year: number;
+  odometer: number;
+  engine: string;
+  isActive: boolean;
+};

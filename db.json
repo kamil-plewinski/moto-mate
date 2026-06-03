@@ -8,7 +8,7 @@
       "year": 2011,
       "odometer": 312000,
       "engine": "1.8T",
-      "isActive": true,
+      "isActive": false,
       "id": "fAyxmGztcDM"
     },
     {
@@ -19,8 +19,19 @@
       "year": 2011,
       "odometer": 34000,
       "engine": "1000 cm3",
-      "isActive": false,
+      "isActive": true,
       "id": "YCvJRHPmirQ"
+    },
+    {
+      "type": "car",
+      "photo": "/img/oskaline-car-63930_640.jpg",
+      "brand": "Peugeot",
+      "model": "308",
+      "year": 2019,
+      "odometer": 127144,
+      "engine": "1.6 HDI",
+      "isActive": false,
+      "id": "5mL_tKXxIOw"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
