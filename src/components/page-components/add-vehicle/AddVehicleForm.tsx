@@ -1,5 +1,7 @@
 import { X } from "lucide-react";
 import { usePopup } from "../../popup/usePopup";
+import { createVehicle } from "../../../api/vehicleApi";
+import type { CreateVehicleDto } from "../my-vehicles/vehicleType";
 
 type AddVehicleFormProps = {
   vehicleCategory: "car" | "motorcycle";
@@ -47,7 +49,7 @@ export default function AddVehicleForm({
     const odometer = formData.get("odometer");
     const engine = formData.get("engine");
 
-    const newVehicle = {
+    const newVehicle: CreateVehicleDto = {
       type: vehicleCategory,
       photo: config.defaultPhoto,
       brand: brand as string,
@@ -59,21 +61,13 @@ export default function AddVehicleForm({
     };
 
     try {
-      const res = await fetch("http://localhost:3001/vehicles", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newVehicle),
-      });
-
-      if (!res.ok) {
-        throw new Error("Nie udało się dodać pojazdu");
-      }
+      await createVehicle(newVehicle);
 
       showPopup("Pojazd został dodany!", "success");
       closeForm();
     } catch (err) {
       console.log("Wystąpił błąd", err);
-      showPopup("Ups, coś poszło nie tak.", "error");
+      showPopup("Nie udało się dodać pojazdu.", "error");
     }
   };
 
