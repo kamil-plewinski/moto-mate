@@ -19,7 +19,7 @@
       "year": 2011,
       "odometer": 34000,
       "engine": "1000 cm3",
-      "isActive": true,
+      "isActive": false,
       "id": "YCvJRHPmirQ"
     },
     {
@@ -30,7 +30,7 @@
       "year": 2019,
       "odometer": 127144,
       "engine": "1.6 HDI",
-      "isActive": false,
+      "isActive": true,
       "id": "5mL_tKXxIOw"
     }
   ],

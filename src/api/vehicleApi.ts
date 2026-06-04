@@ -1,28 +1,23 @@
-import axios from "axios";
+import { api } from "./api";
 import type {
   CreateVehicleDto,
   VehicleType,
 } from "../components/page-components/my-vehicles/vehicleType";
 
 export const createVehicle = async (newVehicle: CreateVehicleDto) => {
-  const response = await axios.post(
-    "http://localhost:3001/vehicles",
-    newVehicle,
-  );
+  const response = await api.post("/vehicles", newVehicle);
 
   return response.data;
 };
 
 export const getVehicles = async (): Promise<VehicleType[]> => {
-  const response = await axios.get<VehicleType[]>(
-    "http://localhost:3001/vehicles",
-  );
+  const response = await api.get<VehicleType[]>("/vehicles");
 
   return response.data;
 };
 
 export const updateVehicle = async (id: number, isActive: boolean) => {
-  const response = await axios.patch(`http://localhost:3001/vehicles/${id}`, {
+  const response = await api.patch(`/vehicles/${id}`, {
     isActive,
   });
 
@@ -30,7 +25,7 @@ export const updateVehicle = async (id: number, isActive: boolean) => {
 };
 
 export const deleteVehicleReq = async (id: number) => {
-  const response = await axios.delete(`http://localhost:3001/vehicles/${id}`);
+  const response = await api.delete(`/vehicles/${id}`);
 
   return response.data;
 };
