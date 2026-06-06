@@ -2,6 +2,9 @@ import { X } from "lucide-react";
 import { usePopup } from "../../popup/usePopup";
 import { createVehicle } from "../../../api/vehicleApi";
 import type { CreateVehicleDto } from "../my-vehicles/vehicleType";
+import VehiclePhotoBtn from "./VehiclePhotoBtn";
+import VehiclePhotoModal from "./VehiclePhotoModal";
+import { useState } from "react";
 
 type AddVehicleFormProps = {
   vehicleCategory: "car" | "motorcycle";
@@ -31,6 +34,7 @@ export default function AddVehicleForm({
   closeForm,
   vehicleCategory,
 }: AddVehicleFormProps) {
+  const [isPhotoModalOpen, setIsPhotoModalOpen] = useState<boolean>(false);
   const { showPopup } = usePopup();
 
   const inputClasses =
@@ -69,6 +73,10 @@ export default function AddVehicleForm({
       console.log("Wystąpił błąd", err);
       showPopup("Nie udało się dodać pojazdu.", "error");
     }
+  };
+
+  const togglePhotoModal = () => {
+    setIsPhotoModalOpen((prev) => !prev);
   };
 
   return (
@@ -147,12 +155,18 @@ export default function AddVehicleForm({
           required
         />
       </div>
-      <button
-        type="submit"
-        className="py-2 mx-auto w-40 text-lg rounded-md bg-linear-to-br from-[#993434] to-[#D71F1F] cursor-pointer hover:from-[#D71F1F] hover:to-[#993434] transition-colors duration-300 shadow-md lg:absolute lg:bottom-0 lg:left-[50%] lg:translate-x-[-50%] lg:mb-8"
-      >
-        Dodaj
-      </button>
+      <div className="flex gap-4 items-center justify-center w-full sm:gap-10 md:gap-20 lg:absolute lg:bottom-0 lg:mb-8">
+        <button
+          type="submit"
+          className="py-3 w-37 text-md uppercase font-semibold  rounded-md bg-linear-to-br from-[#993434] to-[#D71F1F] cursor-pointer hover:from-[#D71F1F] hover:to-[#993434] transition-colors duration-300 shadow-md"
+        >
+          Dodaj
+        </button>
+        <VehiclePhotoBtn togglePhotoModal={togglePhotoModal} />
+      </div>
+      {isPhotoModalOpen && (
+        <VehiclePhotoModal togglePhotoModal={togglePhotoModal} />
+      )}
     </form>
   );
 }
