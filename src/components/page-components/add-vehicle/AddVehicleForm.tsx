@@ -1,10 +1,11 @@
 import { X } from "lucide-react";
 import { usePopup } from "../../popup/usePopup";
 import { createVehicle } from "../../../api/vehicleApi";
-import type { CreateVehicleDto } from "../my-vehicles/vehicleType";
 import VehiclePhotoBtn from "./VehiclePhotoBtn";
 import VehiclePhotoModal from "./VehiclePhotoModal";
 import { useState } from "react";
+import type { CreateVehicleDto } from "../my-vehicles/vehicleType";
+import type { UnsplashImage } from "./VehiclePhotoModal";
 
 type AddVehicleFormProps = {
   vehicleCategory: "car" | "motorcycle";
@@ -35,6 +36,7 @@ export default function AddVehicleForm({
   vehicleCategory,
 }: AddVehicleFormProps) {
   const [isPhotoModalOpen, setIsPhotoModalOpen] = useState<boolean>(false);
+  const [pickPhoto, setPickPhoto] = useState<string>("");
   const { showPopup } = usePopup();
 
   const inputClasses =
@@ -42,6 +44,11 @@ export default function AddVehicleForm({
   const labelClasses = "inline-block mt-2";
 
   const config = vehicleFormConfig[vehicleCategory];
+
+  const handlePickPhoto = (image: UnsplashImage) => {
+    setPickPhoto(image.urls.regular);
+    togglePhotoModal();
+  };
 
   const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -55,7 +62,7 @@ export default function AddVehicleForm({
 
     const newVehicle: CreateVehicleDto = {
       type: vehicleCategory,
-      photo: config.defaultPhoto,
+      photo: pickPhoto || config.defaultPhoto,
       brand: brand as string,
       model: model as string,
       year: Number(year),
@@ -96,12 +103,12 @@ export default function AddVehicleForm({
             className="text-gray-200 hover:text-[#D71F1F] transition-colors duration-200"
           />
         </button>
-        <div>
+        <div className="mt-4  w-full max-w-120 md:max-w-140 lg:max-w-120 h-60 overflow-hidden sm:h-75 md:h-90 lg:mt-0 lg:h-100">
           <img
             id="vehicle-photo"
-            src={config.defaultPhoto}
+            src={pickPhoto || config.defaultPhoto}
             alt="Zdjęcie wybranego pojazdu"
-            className="mt-4 w-full max-w-100 shadow-md rounded-md md:max-w-120 lg:mt-0"
+            className="w-full h-full object-cover object-center"
           />
         </div>
         <div className="my-5 max-w-120 md:max-w-140 lg:max-w-120 lg:my-0">
@@ -157,17 +164,20 @@ export default function AddVehicleForm({
           />
         </div>
         <div className="flex gap-4 items-center justify-center w-full sm:gap-10 md:gap-20 lg:absolute lg:bottom-0 lg:mb-8">
+          <VehiclePhotoBtn togglePhotoModal={togglePhotoModal} />
           <button
             type="submit"
             className="py-3 w-37 text-md uppercase font-semibold  rounded-md bg-linear-to-br from-[#993434] to-[#D71F1F] cursor-pointer hover:from-[#D71F1F] hover:to-[#993434] transition-colors duration-300 shadow-md"
           >
             Dodaj
           </button>
-          <VehiclePhotoBtn togglePhotoModal={togglePhotoModal} />
         </div>
       </form>
       {isPhotoModalOpen && (
-        <VehiclePhotoModal togglePhotoModal={togglePhotoModal} />
+        <VehiclePhotoModal
+          togglePhotoModal={togglePhotoModal}
+          handlePickPhoto={handlePickPhoto}
+        />
       )}
     </>
   );

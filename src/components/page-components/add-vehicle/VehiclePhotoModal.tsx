@@ -5,6 +5,7 @@ import { usePopup } from "../../popup/usePopup";
 
 type VehiclePhotoModalProps = {
   togglePhotoModal: () => void;
+  handlePickPhoto: (image: UnsplashImage) => void;
 };
 
 export type UnsplashImage = {
@@ -12,11 +13,13 @@ export type UnsplashImage = {
   alt_description: string | null;
   urls: {
     small: string;
+    regular: string;
   };
 };
 
 export default function VehiclePhotoModal({
   togglePhotoModal,
+  handlePickPhoto,
 }: VehiclePhotoModalProps) {
   const searchInput = useRef<HTMLInputElement>(null);
   const [images, setImages] = useState<UnsplashImage[]>([]);
@@ -56,7 +59,8 @@ export default function VehiclePhotoModal({
         key={image.id}
         src={image.urls.small}
         alt={image.alt_description ?? ""}
-        className=""
+        className="cursor-pointer hover:scale-102 transition-transform duration-200"
+        onClick={() => handlePickPhoto(image)}
       />
     );
   });
@@ -81,67 +85,69 @@ export default function VehiclePhotoModal({
   };
 
   return (
-    <div
-      className="absolute top-[50%] translate-y-[-50%] p-4 w-[90vw] max-w-225 h-150 bg-zinc-200 text-zinc-800 rounded-xl shadow-md xl:h-150 overflow-clip"
-      onClick={(e) => e.stopPropagation()}
-    >
-      <button
-        type="button"
-        onClick={togglePhotoModal}
-        className="absolute top-0 right-0 m-3 cursor-pointer"
+    <div className="w-full h-full absolute bg-transparent">
+      <div
+        className="absolute top-[50%] left-[50%] translate-[-50%] p-4 w-[90vw] max-w-225 h-150 bg-zinc-200 text-zinc-800 rounded-xl shadow-md xl:h-150 overflow-clip"
+        onClick={(e) => e.stopPropagation()}
       >
-        <X
-          size={34}
-          className="text-zinc-800 hover:text-[#D71F1F] transition-colors duration-200 mr-1"
-        />
-      </button>
-      <div className=" text-lg">
-        <p className="text-2xl font-semibold">Wyszukaj zdjęcie</p>
-        <div className="mt-6">
-          <div className="w-full flex items-center justify-center mt-4">
-            <input
-              type="search"
-              placeholder="Wpisz nazwę pojazdu"
-              ref={searchInput}
-              required
-              onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                  handleSearch();
-                }
-              }}
-              className="p-3 w-full max-w-100 bg-zinc-300 border border-zinc-400 focus:outline-[#993434] text-zinc-800 rounded-md "
-            />
-            <button
-              type="button"
-              onClick={handleSearch}
-              className={`ml-4 py-2 px-3 w-25 ${modalBtnsClass}`}
-            >
-              Szukaj
-            </button>
+        <button
+          type="button"
+          onClick={togglePhotoModal}
+          className="absolute top-0 right-0 m-3 cursor-pointer"
+        >
+          <X
+            size={34}
+            className="text-zinc-800 hover:text-[#D71F1F] transition-colors duration-200 mr-1"
+          />
+        </button>
+        <div className=" text-lg">
+          <p className="text-2xl font-semibold">Wyszukaj zdjęcie</p>
+          <div className="mt-6">
+            <div className="w-full flex items-center justify-center mt-4">
+              <input
+                type="search"
+                placeholder="Wpisz nazwę pojazdu"
+                ref={searchInput}
+                required
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    handleSearch();
+                  }
+                }}
+                className="p-3 w-full max-w-100 bg-zinc-300 border border-zinc-400 focus:outline-[#993434] text-zinc-800 rounded-md "
+              />
+              <button
+                type="button"
+                onClick={handleSearch}
+                className={`ml-4 py-2 px-3 w-25 ${modalBtnsClass}`}
+              >
+                Szukaj
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-      <div className="absolute left-0 bottom-0 px-4 mb-4 w-full h-105  overflow-y-auto">
-        <div className="flex flex-col items-center justify-center gap-4 md:flex-row md:flex-wrap">
-          {renderedImages}
-        </div>
-        <div className="fixed bottom-2 left-[50%] translate-x-[-50%] flex gap-20 mb-4">
-          {page > 1 && (
-            <button
-              className={`p-2 w-20 ${modalBtnsClass}`}
-              onClick={handlePrevPage}
-            >
-              Wstecz
-            </button>
-          )}
-          {page < totalPages && (
-            <button
-              className={`p-2 w-20 ${modalBtnsClass}`}
-              onClick={handleNextPage}
-            >
-              Dalej
-            </button>
-          )}
+        <div className="absolute left-0 bottom-0 px-4 mb-4 w-full h-105  overflow-y-auto">
+          <div className="flex flex-col items-center justify-center gap-4 md:flex-row md:flex-wrap">
+            {renderedImages}
+          </div>
+          <div className="fixed bottom-2 left-[50%] translate-x-[-50%] flex gap-20 mb-4">
+            {page > 1 && (
+              <button
+                className={`p-2 w-20 ${modalBtnsClass}`}
+                onClick={handlePrevPage}
+              >
+                Wstecz
+              </button>
+            )}
+            {page < totalPages && (
+              <button
+                className={`p-2 w-20 ${modalBtnsClass}`}
+                onClick={handleNextPage}
+              >
+                Dalej
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </div>

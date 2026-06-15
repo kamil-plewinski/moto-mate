@@ -19,7 +19,7 @@ export default function VehicleCard({
       transition={{ duration: 0.3, ease: "easeOut" }}
       exit={{ opacity: 0, y: 4, scale: 0.9 }}
       layout
-      className="pt-2 pb-4 max-w-75 custom-background border border-black/40 rounded-xl shadow-[0_5px_15px_rgba(0,0,0,0.35)]  hover:shadow-[0_10px_25px_rgba(0,0,0,0.5)] transition-shadow"
+      className="pt-2 pb-4 w-75 custom-background border border-black/40 rounded-xl shadow-[0_5px_15px_rgba(0,0,0,0.35)]  hover:shadow-[0_10px_25px_rgba(0,0,0,0.5)] transition-shadow"
     >
       <div className="flex items-center justify-between">
         <Star
