@@ -4,6 +4,7 @@ import { createVehicle } from "../../../api/vehicleApi";
 import VehiclePhotoBtn from "./VehiclePhotoBtn";
 import VehiclePhotoModal from "./VehiclePhotoModal";
 import { useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
 import type { CreateVehicleDto } from "../my-vehicles/vehicleType";
 import type { UnsplashImage } from "./VehiclePhotoModal";
 
@@ -103,7 +104,7 @@ export default function AddVehicleForm({
             className="text-gray-200 hover:text-[#D71F1F] transition-colors duration-200"
           />
         </button>
-        <div className="mt-4  w-full max-w-120 md:max-w-140 lg:max-w-120 h-60 overflow-hidden sm:h-75 md:h-90 lg:mt-0 lg:h-100">
+        <div className="mt-4 w-full max-w-120 md:max-w-140 lg:max-w-120 h-55 overflow-hidden sm:h-75 md:h-90 lg:mt-0 lg:h-100">
           <img
             id="vehicle-photo"
             src={pickPhoto || config.defaultPhoto}
@@ -173,12 +174,32 @@ export default function AddVehicleForm({
           </button>
         </div>
       </form>
-      {isPhotoModalOpen && (
-        <VehiclePhotoModal
-          togglePhotoModal={togglePhotoModal}
-          handlePickPhoto={handlePickPhoto}
-        />
-      )}
+      <AnimatePresence initial={false}>
+        {isPhotoModalOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 flex items-center justify-center bg-transparent backdrop-blur-sm z-50"
+            onClick={togglePhotoModal}
+          >
+            <motion.div
+              initial={{ opacity: 0, y: 20, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              exit={{ opacity: 0, y: 20, scale: 0.95 }}
+              role="dialog"
+              aria-modal="true"
+            >
+              <VehiclePhotoModal
+                togglePhotoModal={togglePhotoModal}
+                handlePickPhoto={handlePickPhoto}
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }
