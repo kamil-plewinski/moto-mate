@@ -40,7 +40,7 @@ export default function AddVehiclePage() {
           <motion.div
             initial={{ opacity: 0, y: 20, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 0.25, ease: "easeOut" }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
             exit={{ opacity: 0, y: 20, scale: 0.98 }}
             className="fixed inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm z-50"
             role="dialog"

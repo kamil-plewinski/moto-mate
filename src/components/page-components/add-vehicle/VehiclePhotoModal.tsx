@@ -1,0 +1,142 @@
+import { useRef, useState } from "react";
+import { usePopup } from "../../popup/usePopup";
+import { X } from "lucide-react";
+import { getImages } from "../../../api/unsplashApi";
+import type { UnsplashImage } from "../../../api/unsplashApi";
+
+type VehiclePhotoModalProps = {
+  togglePhotoModal: () => void;
+  handlePickPhoto: (image: UnsplashImage) => void;
+};
+
+export default function VehiclePhotoModal({
+  togglePhotoModal,
+  handlePickPhoto,
+}: VehiclePhotoModalProps) {
+  const searchInput = useRef<HTMLInputElement>(null);
+  const [images, setImages] = useState<UnsplashImage[]>([]);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
+
+  const { showPopup } = usePopup();
+  const modalBtnsClass =
+    "uppercase font-semibold  rounded-md bg-linear-to-br from-[#993434] to-[#D71F1F] cursor-pointer hover:from-[#D71F1F] hover:to-[#993434] transition-colors duration-300 shadow-md text-white";
+
+  const fetchImages = async (page: number) => {
+    const inputValue = searchInput.current?.value;
+
+    try {
+      if (inputValue) {
+        const data = await getImages(inputValue, page);
+
+        setImages(data.results);
+        setTotalPages(data.total_pages);
+        return data;
+      }
+    } catch (error) {
+      showPopup(
+        "Nie udało się pobrać obrazów. Spróbuj ponownie później",
+        "error",
+      );
+      console.log("Nie udało się pobrać obrazów", error);
+    }
+  };
+
+  const renderedImages = images.map((image) => {
+    return (
+      <img
+        key={image.id}
+        src={image.urls.small}
+        alt={image.alt_description ?? ""}
+        className="cursor-pointer hover:scale-102 transition-transform duration-200"
+        onClick={() => handlePickPhoto(image)}
+      />
+    );
+  });
+
+  const handleSearch = () => {
+    setPage(1);
+    fetchImages(1);
+  };
+
+  const handleNextPage = () => {
+    const nextPage = page + 1;
+
+    setPage(nextPage);
+    fetchImages(nextPage);
+  };
+
+  const handlePrevPage = () => {
+    const prevPage = page - 1;
+
+    setPage(prevPage);
+    fetchImages(prevPage);
+  };
+
+  return (
+    <div
+      className="relative p-4 w-[90vw] max-w-225 h-150 bg-zinc-200 text-zinc-800 rounded-xl shadow-md xl:h-150 overflow-clip"
+      onClick={(e) => e.stopPropagation()}
+    >
+      <button
+        type="button"
+        onClick={togglePhotoModal}
+        className="absolute top-0 right-0 m-3 cursor-pointer"
+      >
+        <X
+          size={34}
+          className="text-zinc-800 hover:text-[#D71F1F] transition-colors duration-200 mr-1"
+        />
+      </button>
+      <div className=" text-lg">
+        <p className="text-2xl font-semibold">Wyszukaj zdjęcie</p>
+        <div className="mt-6">
+          <div className="w-full flex items-center justify-center mt-4">
+            <input
+              type="search"
+              placeholder="Wpisz nazwę pojazdu"
+              ref={searchInput}
+              required
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  handleSearch();
+                }
+              }}
+              className="p-3 w-full max-w-100 bg-zinc-300 border border-zinc-400 focus:outline-[#993434] text-zinc-800 rounded-md "
+            />
+            <button
+              type="button"
+              onClick={handleSearch}
+              className={`ml-4 py-2 px-3 w-25 ${modalBtnsClass}`}
+            >
+              Szukaj
+            </button>
+          </div>
+        </div>
+      </div>
+      <div className="absolute left-0 bottom-0 px-4 mb-4 w-full h-105  overflow-y-auto">
+        <div className="flex flex-col items-center justify-center gap-4 md:flex-row md:flex-wrap">
+          {renderedImages}
+        </div>
+      </div>
+      <div className="absolute bottom-2 left-[50%] translate-x-[-50%] flex gap-20 mb-4">
+        {page > 1 && (
+          <button
+            className={`p-2 w-20 ${modalBtnsClass}`}
+            onClick={handlePrevPage}
+          >
+            Wstecz
+          </button>
+        )}
+        {page < totalPages && (
+          <button
+            className={`p-2 w-20 ${modalBtnsClass}`}
+            onClick={handleNextPage}
+          >
+            Dalej
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}
