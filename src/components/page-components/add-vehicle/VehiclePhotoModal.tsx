@@ -1,20 +1,12 @@
-import axios from "axios";
 import { useRef, useState } from "react";
 import { usePopup } from "../../popup/usePopup";
 import { X } from "lucide-react";
+import { getImages } from "../../../api/unsplashApi";
+import type { UnsplashImage } from "../../../api/unsplashApi";
 
 type VehiclePhotoModalProps = {
   togglePhotoModal: () => void;
   handlePickPhoto: (image: UnsplashImage) => void;
-};
-
-export type UnsplashImage = {
-  id: string;
-  alt_description: string | null;
-  urls: {
-    small: string;
-    regular: string;
-  };
 };
 
 export default function VehiclePhotoModal({
@@ -26,23 +18,20 @@ export default function VehiclePhotoModal({
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
 
-  const API_URL = "https://api.unsplash.com/search/photos";
-  const IMAGES_PER_PAGE = 8;
-
   const { showPopup } = usePopup();
   const modalBtnsClass =
     "uppercase font-semibold  rounded-md bg-linear-to-br from-[#993434] to-[#D71F1F] cursor-pointer hover:from-[#D71F1F] hover:to-[#993434] transition-colors duration-300 shadow-md text-white";
 
-  const fetchImages = async (currentPage: number) => {
-    try {
-      if (searchInput.current?.value) {
-        const response = await axios.get(
-          `${API_URL}?query=${searchInput.current?.value}&page=${currentPage}&per_page=${IMAGES_PER_PAGE}&client_id=${import.meta.env.VITE_UNSPLASH_API_KEY}`,
-        );
+  const fetchImages = async (page: number) => {
+    const inputValue = searchInput.current?.value;
 
-        setImages(response.data.results);
-        setTotalPages(response.data.total_pages);
-        return response.data;
+    try {
+      if (inputValue) {
+        const data = await getImages(inputValue, page);
+
+        setImages(data.results);
+        setTotalPages(data.total_pages);
+        return data;
       }
     } catch (error) {
       showPopup(
