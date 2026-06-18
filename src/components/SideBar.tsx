@@ -2,6 +2,7 @@ import HomeIcon from "./icons/HomeIcon";
 import AddVehicleIcon from "./icons/AddVehicleIcon";
 import MyVehiclesIcon from "./icons/MyVehiclesIcon";
 import NavItemDesktop from "./NavItemDesktop";
+import ExpensesIcon from "./icons/ExpensesIcon";
 
 type DesktopNavItemsConfig = {
   title: string;
@@ -25,6 +26,11 @@ export default function SideBar() {
       title: "Moje pojazdy",
       icon: <MyVehiclesIcon />,
       path: "/my-vehicles",
+    },
+    {
+      title: "Wydatki",
+      icon: <ExpensesIcon />,
+      path: "/expenses",
     },
   ];
 

@@ -3,6 +3,7 @@ import Root from "./pages/Root";
 import HomePage from "./pages/HomePage";
 import AddVehiclePage from "./pages/AddVehiclePage";
 import MyVehiclesPage from "./pages/MyVehiclesPage";
+import ExpensesPage from "./pages/ExpensesPage";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
       {
         path: "my-vehicles",
         element: <MyVehiclesPage />,
+      },
+      {
+        path: "expenses",
+        element: <ExpensesPage />,
       },
     ],
   },

@@ -4,6 +4,7 @@ import ChevronIcon from "./icons/ChevronIcon";
 import HomeIcon from "./icons/HomeIcon";
 import MyVehiclesIcon from "./icons/MyVehiclesIcon";
 import NavItemMobile from "./NavItemMobile";
+import ExpensesIcon from "./icons/ExpensesIcon";
 
 type NavItemsConfig = {
   title: string;
@@ -33,6 +34,12 @@ export default function MobileBottomNav() {
       icon: <MyVehiclesIcon />,
       gridArea: "col-1 row-2",
       path: "/my-vehicles",
+    },
+    {
+      title: "Wydatki",
+      icon: <ExpensesIcon />,
+      gridArea: "col-2 row-2",
+      path: "/expenses",
     },
   ];
 

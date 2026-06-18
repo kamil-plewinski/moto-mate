@@ -111,7 +111,7 @@ export default function MyVehiclesPage() {
   }
 
   return (
-    <div className="overflow-y-hidden">
+    <div className="overflow-y-hidden max-h-full">
       <h1 className="text-2xl my-6 lg:my-2">Moje pojazdy</h1>
       {isModalOpen && vehicleToDelete !== null && (
         <DeleteModal

@@ -1,0 +1,7 @@
+export default function ExpensesPage() {
+  return (
+    <>
+      <h1>Wydatki</h1>
+    </>
+  );
+}

@@ -16,7 +16,7 @@ export default function NavItemDesktop({
       to={path}
       end={path === "/"}
       className={({ isActive }) => {
-        const baseClasses = `flex relative group items-center justify-start mb-6 py-4 px-2 w-full bg-transparent text-[#ddd] rounded-xl transition-colors duration-300 ease-out overflow-hidden`;
+        const baseClasses = `flex relative group items-center justify-start mb-6 py-4 px-3 w-full bg-transparent text-[#ddd] rounded-xl transition-colors duration-300 ease-out overflow-hidden`;
 
         const activeClasses = `hover:text-white hover:bg-linear-to-r hover:from-[#993434] hover:to-[#D71F1F] hover:border-transparent  ${isActive ? "bg-linear-to-r from-[#993434] to-[#D71F1F] text-white" : ""}`;
 
