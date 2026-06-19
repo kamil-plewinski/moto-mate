@@ -6,7 +6,7 @@ import VehiclePhotoModal from "./VehiclePhotoModal";
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import type { CreateVehicleDto } from "../my-vehicles/vehicleType";
-import type { UnsplashImage } from "./VehiclePhotoModal";
+import type { UnsplashImage } from "../../../api/unsplashApi";
 
 type AddVehicleFormProps = {
   vehicleCategory: "car" | "motorcycle";
