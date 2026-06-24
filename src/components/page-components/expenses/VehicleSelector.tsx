@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 import CarIcon from "../../icons/CarIcon";
 import { getVehicles, updateVehicle } from "../../../api/vehicleApi";
 import type { VehicleType } from "../my-vehicles/vehicleType";
+import { usePopup } from "../../popup/usePopup";
 
 export default function VehicleSelector() {
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
   const [vehiclesList, setVehiclesList] = useState<VehicleType[]>([]);
-  // const [activeVehicle, setActiveVehicle] = useState<VehicleType>();
+
+  const { showPopup } = usePopup();
 
   const toggleDropdown = () => {
     setIsDropdownOpen((prev) => !prev);
@@ -55,23 +57,25 @@ export default function VehicleSelector() {
         }));
       });
       toggleDropdown();
+      showPopup(
+        `Aktywny pojazd został zmieniony na ${selectedVehicle.brand} ${selectedVehicle.model}.`,
+        "favourite",
+      );
     } catch (err) {
+      showPopup(
+        "Wystąpił błąd. Nie udało się wybrać aktywnego pojazdu.",
+        "error",
+      );
       console.error(
         err,
-        `nie udało się wybrać ${selectedVehicle.brand} jako aktywnego pojazdu`,
+        `Nie udało się ustawić ${selectedVehicle.brand} jako aktywny pojazd`,
       );
     }
   };
 
-  const showActiveVehicle = vehiclesList.map((vehicle) => {
-    if (vehicle.isActive) {
-      return (
-        <p key={vehicle.id}>
-          {vehicle.brand} {vehicle.model}
-        </p>
-      );
-    }
-  });
+  const activeVehicle: VehicleType | undefined = vehiclesList.find(
+    (vehicle) => vehicle.isActive === true,
+  );
 
   return (
     <div className="flex items-center gap-4 p-4 w-full h-30 custom-background">
@@ -80,7 +84,11 @@ export default function VehicleSelector() {
       </div>
       <div className="ml-3">
         <h2>Aktualnie wybrany Pojazd</h2>
-        {showActiveVehicle}
+        <p>
+          {activeVehicle
+            ? `${activeVehicle.brand} ${activeVehicle.model}`
+            : "Brak aktywnego pojazdu"}
+        </p>
       </div>
       <div className="relative ml-auto">
         <button className="bg-gray-500 p-2" onClick={toggleDropdown}>
