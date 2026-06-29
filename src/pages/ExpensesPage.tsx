@@ -63,7 +63,7 @@ export default function ExpensesPage() {
   return (
     <>
       <h1>Wydatki</h1>
-      <div className="flex flex-col items-center gap-6">
+      <div className="flex flex-col items-center gap-6 pb-26">
         <VehicleSelector
           vehiclesList={vehiclesList}
           setActiveVehicle={setActiveVehicle}
