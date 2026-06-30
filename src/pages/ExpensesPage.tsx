@@ -69,7 +69,7 @@ export default function ExpensesPage() {
           setActiveVehicle={setActiveVehicle}
           activeVehicle={activeVehicle}
         />
-        <AddExpense />
+        <AddExpense activeVehicle={activeVehicle} />
         <ExpensesHistory />
       </div>
     </>

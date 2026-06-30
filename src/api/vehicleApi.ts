@@ -3,6 +3,10 @@ import type {
   CreateVehicleDto,
   VehicleType,
 } from "../components/page-components/my-vehicles/vehicleType";
+import type {
+  CreateExpenseDto,
+  ExpenseType,
+} from "../components/page-components/expenses/expenseType";
 
 export const createVehicle = async (newVehicle: CreateVehicleDto) => {
   const response = await api.post("/vehicles", newVehicle);
@@ -26,6 +30,18 @@ export const updateVehicle = async (id: number, isActive: boolean) => {
 
 export const deleteVehicleReq = async (id: number) => {
   const response = await api.delete(`/vehicles/${id}`);
+
+  return response.data;
+};
+
+export const addNewExpense = async (
+  vehicleId: number,
+  expenses: ExpenseType[],
+  newExpense: CreateExpenseDto,
+) => {
+  const response = await api.patch(`/vehicles/${vehicleId}`, {
+    expenses: [...expenses, newExpense],
+  });
 
   return response.data;
 };

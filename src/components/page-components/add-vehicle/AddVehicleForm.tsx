@@ -70,6 +70,7 @@ export default function AddVehicleForm({
       odometer: Number(odometer),
       engine: engine as string,
       isActive: false,
+      expenses: [],
     };
 
     try {

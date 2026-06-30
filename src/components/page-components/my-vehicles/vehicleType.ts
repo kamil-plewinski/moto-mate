@@ -1,3 +1,5 @@
+import type { ExpenseType, CreateExpenseDto } from "../expenses/expenseType";
+
 export type VehicleType = {
   id: number;
   type: "car" | "motorcycle";
@@ -8,6 +10,7 @@ export type VehicleType = {
   odometer: number;
   engine: string;
   isActive: boolean;
+  expenses: ExpenseType[];
 };
 
 export type CreateVehicleDto = {
@@ -19,4 +22,5 @@ export type CreateVehicleDto = {
   odometer: number;
   engine: string;
   isActive: boolean;
+  expenses: CreateExpenseDto[];
 };

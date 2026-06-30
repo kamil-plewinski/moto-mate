@@ -1,7 +1,48 @@
 import WalletIcon from "../../icons/WalletIcon";
 import { Plus } from "lucide-react";
+import { addNewExpense } from "../../../api/vehicleApi";
+import type { VehicleType } from "../my-vehicles/vehicleType";
+import type { CreateExpenseDto } from "./expenseType";
 
-export default function AddExpense() {
+type AddExpenseProps = {
+  activeVehicle: VehicleType | undefined;
+};
+
+export default function AddExpense({ activeVehicle }: AddExpenseProps) {
+  const submitForm = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    if (!activeVehicle) {
+      return;
+    }
+
+    const vehicleId = activeVehicle.id;
+    const expenses = activeVehicle.expenses;
+
+    const formData = new FormData(event.currentTarget);
+    const name = formData.get("expense-name");
+    const category = formData.get("category");
+    const cost = formData.get("cost");
+    const date = formData.get("date");
+    const odometer = formData.get("recent-odometer");
+
+    const newExpense: CreateExpenseDto = {
+      name: name as string,
+      category: category as string,
+      cost: Number(cost),
+      date: date as string,
+      odometer: Number(odometer),
+    };
+
+    try {
+      await addNewExpense(vehicleId, expenses, newExpense);
+    } catch (err) {
+      console.log("Nie udało się dodać wydatku", err);
+    }
+
+    console.log("Dodano wydatek dla:", activeVehicle.brand, newExpense);
+  };
+
   return (
     <div className="p-4 w-full custom-background md:px-10">
       <div className="flex items-center gap-4 mt-3">
@@ -9,7 +50,10 @@ export default function AddExpense() {
         <h2 className="font-semibold text-lg sm:text-xl">Dodaj nowy wydatek</h2>
       </div>
       <div className="my-6 h-px w-full bg-white/30"></div>
-      <form className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5">
+      <form
+        onSubmit={submitForm}
+        className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5"
+      >
         <div>
           <label htmlFor="expense-name">Nazwa Wydatku</label> <br />
           <input
