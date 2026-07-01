@@ -5,6 +5,8 @@ import AddExpense from "../components/page-components/expenses/AddExpense";
 import ExpensesHistory from "../components/page-components/expenses/ExpensesHistory";
 import VehicleSelector from "../components/page-components/expenses/VehicleSelector";
 import type { VehicleType } from "../components/page-components/my-vehicles/vehicleType";
+import { addNewExpense } from "../api/vehicleApi";
+import type { CreateExpenseDto } from "../components/page-components/expenses/expenseType";
 
 export default function ExpensesPage() {
   const [vehiclesList, setVehiclesList] = useState<VehicleType[]>([]);
@@ -60,6 +62,44 @@ export default function ExpensesPage() {
     (vehicle) => vehicle.isActive === true,
   );
 
+  const handleAddExpense = async (newExpense: CreateExpenseDto) => {
+    if (!activeVehicle) {
+      return;
+    }
+
+    const vehicleId = activeVehicle.id;
+    const expenses = activeVehicle.expenses;
+
+    try {
+      await addNewExpense(vehicleId, expenses, newExpense);
+    } catch (err) {
+      console.log("Nie udało się dodać wydatku", err);
+    }
+
+    setVehiclesList((prev) => {
+      return prev.map((vehicle) => {
+        if (vehicle.id === activeVehicle.id) {
+          return {
+            ...vehicle,
+            expenses: [...vehicle.expenses, newExpense],
+          };
+        }
+        return vehicle;
+      });
+    });
+
+    console.log(
+      "Stara lista Wydatków:",
+      expenses,
+      "Dodano wydatek dla pojazdu:",
+      activeVehicle.brand,
+      "Nowy wydatek to:",
+      newExpense,
+      "Najświeższa lista wydatków:",
+      expenses,
+    );
+  };
+
   return (
     <>
       <h1>Wydatki</h1>
@@ -69,7 +109,7 @@ export default function ExpensesPage() {
           setActiveVehicle={setActiveVehicle}
           activeVehicle={activeVehicle}
         />
-        <AddExpense activeVehicle={activeVehicle} />
+        <AddExpense handleAddExpense={handleAddExpense} />
         <ExpensesHistory />
       </div>
     </>

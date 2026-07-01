@@ -1,23 +1,14 @@
 import WalletIcon from "../../icons/WalletIcon";
 import { Plus } from "lucide-react";
-import { addNewExpense } from "../../../api/vehicleApi";
-import type { VehicleType } from "../my-vehicles/vehicleType";
 import type { CreateExpenseDto } from "./expenseType";
 
 type AddExpenseProps = {
-  activeVehicle: VehicleType | undefined;
+  handleAddExpense: (newExpense: CreateExpenseDto) => Promise<void>;
 };
 
-export default function AddExpense({ activeVehicle }: AddExpenseProps) {
+export default function AddExpense({ handleAddExpense }: AddExpenseProps) {
   const submitForm = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
-    if (!activeVehicle) {
-      return;
-    }
-
-    const vehicleId = activeVehicle.id;
-    const expenses = activeVehicle.expenses;
 
     const formData = new FormData(event.currentTarget);
     const name = formData.get("expense-name");
@@ -34,13 +25,7 @@ export default function AddExpense({ activeVehicle }: AddExpenseProps) {
       odometer: Number(odometer),
     };
 
-    try {
-      await addNewExpense(vehicleId, expenses, newExpense);
-    } catch (err) {
-      console.log("Nie udało się dodać wydatku", err);
-    }
-
-    console.log("Dodano wydatek dla:", activeVehicle.brand, newExpense);
+    await handleAddExpense(newExpense);
   };
 
   return (
