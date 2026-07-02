@@ -71,35 +71,28 @@ export default function ExpensesPage() {
     const expenses = activeVehicle.expenses;
 
     try {
-      await addNewExpense(vehicleId, expenses, newExpense);
+      const updatedVehicle: VehicleType = await addNewExpense(
+        vehicleId,
+        expenses,
+        newExpense,
+      );
+
+      
+      setVehiclesList((prev) => {
+        return prev.map((vehicle) => {
+          if (vehicle.id === activeVehicle.id) {
+            return updatedVehicle;
+          } else {
+            return vehicle;
+          }
+        });
+      });
+      console.log(updatedVehicle);
     } catch (err) {
       console.log("Nie udało się dodać wydatku", err);
     }
-
-    setVehiclesList((prev) => {
-      return prev.map((vehicle) => {
-        if (vehicle.id === activeVehicle.id) {
-          return {
-            ...vehicle,
-            expenses: [...vehicle.expenses, newExpense],
-          };
-        }
-        return vehicle;
-      });
-    });
-
-    console.log(
-      "Stara lista Wydatków:",
-      expenses,
-      "Dodano wydatek dla pojazdu:",
-      activeVehicle.brand,
-      "Nowy wydatek to:",
-      newExpense,
-      "Najświeższa lista wydatków:",
-      expenses,
-    );
   };
-
+  
   return (
     <>
       <h1>Wydatki</h1>
